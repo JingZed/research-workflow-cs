@@ -28,22 +28,30 @@ Private topics, experiment outputs, credentials, CCB state, infrastructure
 inventory, archives, backups, and vendored PaperOrchestra code are not part of
 this package.
 
-## Create a Workspace
+## Create a Research Workspace
 
 The package does not assume a discipline, topic, dataset, method, or venue.
-Initialize only the neutral directory skeleton, then fill the project-specific
-content yourself:
+Initialize the neutral Research root first, then create a topic only when you
+have a name to supply yourself:
 
 ```bash
-python workflow/scripts/init_research_workspace.py --root path/to/workspace
-python workflow/scripts/init_research_workspace.py --root path/to/workspace --apply
+python workflow/scripts/init_research_workspace.py --root path/to/research
+python workflow/scripts/init_research_workspace.py --root path/to/research --apply
+
+python workflow/scripts/init_research_workspace.py \
+  --root path/to/research --topic your-topic
+python workflow/scripts/init_research_workspace.py \
+  --root path/to/research --topic your-topic --apply
 ```
 
-Without `--apply`, the command is preview-only. With `--apply`, it creates only
-`synthesis/`, `ideas/`, `papers/`, and an empty `ideas/registry.yaml`. It does
-not invent a topic profile, discipline, data schema, hypothesis, experiment,
-or manuscript. Later Skills create their owned files when you explicitly use
-them.
+Without `--apply`, the command is preview-only. Root mode creates or preserves
+`workflow/` and `topics/`; topic mode creates only
+`topics/<your-topic>/{synthesis,ideas,papers}` and its empty
+`ideas/registry.yaml`. It does not invent a topic profile, discipline, data
+schema, hypothesis, experiment, or manuscript. Existing `workflow/skills/`
+projections are preserved and never overwritten. Optional operational folders
+such as `infrastructure/`, `deliverables/`, and `presentations/` are created
+only when a later task actually needs them.
 
 ## Quick Validation
 
