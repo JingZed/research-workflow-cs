@@ -1,6 +1,6 @@
 # Release Manifest
 
-- Built: 2026-08-17
+- Built: 2026-08-18
 - Materialized Skills: 39
 - Skill budget: 39/40
 - Catalog paths: checkout-relative
@@ -20,6 +20,7 @@
 - `workflow/scripts/arxiv_fetch.py`
 - `workflow/scripts/build_research_skills.py`
 - `workflow/scripts/fetch_paper_pdf.py`
+- `workflow/scripts/init_research_workspace.py`
 - `workflow/scripts/import_paperhunter.py`
 - `workflow/scripts/lint_skill_catalog.py`
 - `workflow/scripts/seed_candidates_for_po.py`
@@ -29,6 +30,7 @@
 - `workflow/scripts/test_experiment_watchdog.py`
 - `workflow/scripts/test_idea_activation.py`
 - `workflow/scripts/test_import_paperhunter.py`
+- `workflow/scripts/test_init_research_workspace.py`
 - `workflow/scripts/test_lint_skill_catalog.py`
 - `workflow/scripts/test_outline_paper_dir_selection.py`
 - `workflow/scripts/test_run_promotion_contract.py`

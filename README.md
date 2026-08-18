@@ -28,6 +28,23 @@ Private topics, experiment outputs, credentials, CCB state, infrastructure
 inventory, archives, backups, and vendored PaperOrchestra code are not part of
 this package.
 
+## Create a Workspace
+
+The package does not assume a discipline, topic, dataset, method, or venue.
+Initialize only the neutral directory skeleton, then fill the project-specific
+content yourself:
+
+```bash
+python workflow/scripts/init_research_workspace.py --root path/to/workspace
+python workflow/scripts/init_research_workspace.py --root path/to/workspace --apply
+```
+
+Without `--apply`, the command is preview-only. With `--apply`, it creates only
+`synthesis/`, `ideas/`, `papers/`, and an empty `ideas/registry.yaml`. It does
+not invent a topic profile, discipline, data schema, hypothesis, experiment,
+or manuscript. Later Skills create their owned files when you explicitly use
+them.
+
 ## Quick Validation
 
 Use Python 3.11 or newer. From the package root:
