@@ -73,12 +73,38 @@ not require or contain them.
 
 - Semantic Scholar helpers require `SEMANTIC_SCHOLAR_API_KEY`; keep it in the
   environment or an explicitly untracked local token file.
+- MinerU conversion requires `MINERU_API_TOKEN` when the configured MinerU
+  route asks for authentication. Use the token setup below; do not put a real
+  token in this repository.
 - PaperOrchestra is an optional backend and is not bundled. The corresponding
   Skill must remain dormant when no separate installation and local policy are
   available.
 - `arxiv_fetch.py` retains its upstream MIT attribution. See
   `THIRD_PARTY_NOTICES.md` and
   `LICENSES/Auto-claude-code-research-in-sleep-MIT.txt`.
+
+## API Token Setup
+
+The release contains no credentials. To configure optional authenticated
+integrations in a local checkout:
+
+```bash
+cp workflow/api_tokens.env.example workflow/api_tokens.env
+chmod 600 workflow/api_tokens.env
+```
+
+Edit `workflow/api_tokens.env` and replace the placeholders with one
+`KEY=value` entry per line. The supported entries are:
+
+- `SEMANTIC_SCHOLAR_API_KEY` — used by the Semantic Scholar metadata helper.
+- `MINERU_API_TOKEN` — used by the MinerU conversion route when authentication
+  is required.
+
+Environment variables with the same names may be used instead of the local
+file. The local file is ignored by Git and must never be committed or copied
+into a report. If a required key is unavailable, the helper or Skill stops and
+reports the missing-key blocker explicitly; it does not silently substitute a
+credential.
 
 ## Safety Boundary
 
