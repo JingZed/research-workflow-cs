@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper PDF Fetcher"
+  short_description: "Download one selected paper PDF"
+  default_prompt: "Use $paper-pdf-fetcher to download the selected paper into the local workspace and record the source used."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Targeted Critic"
+  short_description: "Bounded artifact, evidence, or paper critique"
+  default_prompt: "Use $targeted-critic in the narrowest fitting mode for this requested critique."

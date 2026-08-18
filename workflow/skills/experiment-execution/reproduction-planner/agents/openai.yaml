@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reproduction Planner"
+  short_description: "Plan reproduction of a target paper"
+  default_prompt: "Use $reproduction-planner to break this paper into a concrete reproduction checklist and blocker list."

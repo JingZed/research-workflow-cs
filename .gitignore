@@ -1,0 +1,28 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Credentials and local provider configuration
+.env
+*.env
+!*.env.example
+api_tokens.env
+workflow/api_tokens.env
+mineru_api_token.txt
+.mineru_token
+
+# Runtime and generated research outputs
+**/.ccb/
+**/.backup/
+**/archive/
+**/archives/
+**/runs/
+**/outputs/
+**/artifacts/
+**/tmp/
+deliverables/
+presentations/

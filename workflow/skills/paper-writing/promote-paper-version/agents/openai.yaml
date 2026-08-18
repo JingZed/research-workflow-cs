@@ -1,0 +1,4 @@
+interface:
+  display_name: "Promote Paper Version"
+  short_description: "Preview or apply a recoverable paper replacement"
+  default_prompt: "Use $promote-paper-version to preview or apply this user-requested canonical paper replacement."

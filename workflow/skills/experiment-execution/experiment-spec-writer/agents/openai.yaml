@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Spec Writer"
+  short_description: "Write compact or confirmatory experiment plans"
+  default_prompt: "Use $experiment-spec-writer to help with this task."

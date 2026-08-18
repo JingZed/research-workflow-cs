@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Corpus Maintainer"
+  short_description: "Literature Corpus Maintainer"
+  default_prompt: "Use $literature-corpus-maintainer to help with this task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Watchdog"
+  short_description: "Report only material experiment state changes"
+  default_prompt: "Use $experiment-watchdog to help with this task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Experiment"
+  short_description: "Run experiments with proportional run-local state"
+  default_prompt: "Use $run-experiment to launch or resume this run, or use explicit record mode for a legacy log update."

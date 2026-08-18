@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Discovery Fetcher"
+  short_description: "Fetch and refresh literature candidates"
+  default_prompt: "Use $paper-discovery-fetcher to search for recent papers on my topic, deduplicate them, and save a candidate pool for triage."

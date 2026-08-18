@@ -1,0 +1,4 @@
+interface:
+  display_name: "Method Results Drafter"
+  short_description: "Draft methods, results, and discussion"
+  default_prompt: "Use $method-results-drafter to write the method and results draft from my experiment plan, tables, and plots."

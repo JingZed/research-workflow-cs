@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hypothesis Framer"
+  short_description: "Turn an idea into a testable hypothesis"
+  default_prompt: "Use $hypothesis-framer to turn this research idea into a falsifiable hypothesis with success criteria."

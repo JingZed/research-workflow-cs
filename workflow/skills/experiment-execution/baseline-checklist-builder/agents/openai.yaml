@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baseline Checklist Builder"
+  short_description: "List required baselines and controls"
+  default_prompt: "Use $baseline-checklist-builder to define the baselines, controls, and sanity checks for this project."

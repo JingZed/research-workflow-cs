@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Style Auditor"
+  short_description: "Audit manuscript style, framing, and readability"
+  default_prompt: "Use $paper-style-auditor to audit this manuscript for style, framing, and readability."

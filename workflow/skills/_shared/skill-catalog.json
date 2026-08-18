@@ -1,0 +1,784 @@
+[
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "citation-library-maintainer",
+    "title": "Citation Library Maintainer",
+    "description": "Maintain a stable local bibliography file with deduplicated, normalized BibTeX entries. Use when Codex needs to merge paper metadata into `refs.bib`, fix citation keys, remove duplicates, or repair inconsistent venue and identifier fields across multiple papers.",
+    "path": "workflow/skills/research-ideation/citation-library-maintainer/SKILL.md",
+    "consumes": [
+      "One or more `<topic-root>/papers/<paper-id>/meta.yaml` files or raw BibTeX entries.",
+      "Existing `refs.bib`.",
+      "Optional project-specific citation key conventions."
+    ],
+    "produces": [
+      "`refs.bib`"
+    ],
+    "short_description": "Merge and normalize refs.bib entries"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "claim-evidence-mapper",
+    "title": "Claim Evidence Mapper",
+    "description": "Map one external source paper's major claims to concrete evidence, assumptions, and gaps in its topic-level paper workspace. Use when Codex needs to audit whether that paper's stated contributions are supported by figures, tables, experiments, or assumptions before reuse, criticism, or reproduction. Do not use for the active project's manuscript claims.",
+    "path": "workflow/skills/research-ideation/claim-evidence-mapper/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/paper.md`, `structure.md`, and `summary.md` when available.",
+      "Optional `<topic-root>/papers/<paper-id>/figures/index.md` for figure and table references.",
+      "Optional user focus on one claim, section, or experiment."
+    ],
+    "produces": [
+      "`<topic-root>/papers/<paper-id>/claim-evidence-map.md`"
+    ],
+    "short_description": "Audit an external paper's claim support"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "figure-table-extractor",
+    "title": "Figure Table Extractor",
+    "description": "Extract figures, tables, and captions from a paper into a reusable index. Use when Codex needs to capture visual evidence from `source.pdf` or `paper.md`, build a `figures/` folder, or connect claims to the paper's visual artifacts.",
+    "path": "workflow/skills/research-ideation/figure-table-extractor/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/source.pdf` and, when helpful, paper-local `paper.md` for cross-checking numbering.",
+      "Optional local extraction tools or existing image exports.",
+      "Optional paper-local `summary.md` or `claim-evidence-map.md` if figure priority already exists."
+    ],
+    "produces": [
+      "`<topic-root>/papers/<paper-id>/figures/`",
+      "`<topic-root>/papers/<paper-id>/figures/index.md`"
+    ],
+    "short_description": "Extract figure assets and caption index"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "idea-backlog-manager",
+    "title": "Idea Backlog Manager",
+    "description": "Maintain a topic-level ranked backlog and the explicit promote/activate lifecycle for research ideas. Use when Codex needs to capture or rank candidate ideas, update `synthesis/idea-backlog.md`, create a registered `ideas/iNNN/idea.md`, activate a promoted idea with canonical resume state, change idea status, or preserve a legacy idea through a registered migration bridge.",
+    "path": "workflow/skills/research-ideation/idea-backlog-manager/SKILL.md",
+    "consumes": [
+      "`<topic-root>/synthesis/research-gaps.md`, linked paper-local `notes.md`, or raw idea notes.",
+      "Optional current priorities, thesis constraints, or deadline context.",
+      "Optional existing `<topic-root>/synthesis/idea-backlog.md`.",
+      "Optional existing `<topic-root>/ideas/registry.yaml` when promoting an idea."
+    ],
+    "produces": [
+      "`<topic-root>/synthesis/idea-backlog.md`",
+      "Optional `<topic-root>/ideas/registry.yaml` when the user explicitly promotes or changes the status of an idea",
+      "Optional `<topic-root>/ideas/<id>/idea.md` when the user explicitly promotes one backlog item",
+      "Optional `<topic-root>/ideas/<id>/notes/CURRENT.md` and `<topic-root>/ideas/<id>/notes/project-state.md` when the user explicitly activates a promoted idea"
+    ],
+    "short_description": "Rank, promote, and activate research ideas"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "literature-corpus-maintainer",
+    "title": "Literature Corpus Maintainer",
+    "description": "Maintain the topic-level literature-corpus.jsonl as the single source of truth for all papers in a topic. Use when adding new papers after discovery or triage, merging duplicates, updating read_status or summary_path, or rebuilding the corpus from scratch.",
+    "path": "workflow/skills/research-ideation/literature-corpus-maintainer/SKILL.md",
+    "consumes": [
+      "Existing `<topic-root>/synthesis/literature-corpus.jsonl` when it already exists.",
+      "New paper entries from `<topic-root>/synthesis/paper-leads.jsonl`, `<topic-root>/synthesis/reading-queue.md`, or triage output.",
+      "Optional `<topic-root>/papers/<paper-id>/meta.yaml`, `summary.md`, or path updates when a paper transitions from unread to read.",
+      "Optional user-specified `relevant_to` tags that associate a paper with one or more shared subtopics or promoted idea IDs."
+    ],
+    "produces": [
+      "`<topic-root>/synthesis/literature-corpus.jsonl`"
+    ],
+    "short_description": "Literature Corpus Maintainer"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "literature-matrix-builder",
+    "title": "Literature Matrix Builder",
+    "description": "Build one requested multi-paper synthesis view from the shared topic corpus. Supports matrix mode for comparable rows, map mode for clusters and bridge papers, and gaps mode for a small source-bounded gap shortlist; modes are independent and never auto-chain.",
+    "path": "workflow/skills/research-ideation/literature-matrix-builder/SKILL.md",
+    "consumes": [
+      "`<topic-root>/synthesis/literature-corpus.jsonl` as the paper inventory when it exists.",
+      "Relevant paper-local `summary.md`, `meta.yaml`, `notes.md`, and optional `claim-evidence-map.md`.",
+      "Existing `<topic-root>/synthesis/literature-matrix.md` or `<topic-root>/synthesis/topic-map.md` only when the selected mode needs it.",
+      "Optional exact idea ID, topic scope, comparison columns, or constraints."
+    ],
+    "produces": [
+      "Matrix mode:",
+      "`<topic-root>/synthesis/literature-matrix.md`, or",
+      "`<topic-root>/ideas/<id>/literature-matrix.md` for one explicit idea.",
+      "Map mode: `<topic-root>/synthesis/topic-map.md`.",
+      "Gaps mode: `<topic-root>/synthesis/research-gaps.md`. Produce one mode's artifact unless the user explicitly asks for several."
+    ],
+    "short_description": "Build one matrix, topic map, or gap view"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-discovery-fetcher",
+    "title": "Paper Discovery Fetcher",
+    "description": "Fetch candidate papers from available academic search sources into a reusable leads file. Use when Codex needs to search for new literature, refresh a topic-based paper pool, rank or deduplicate candidate papers, or hand a curated candidate set to `paper-inbox-triage`.",
+    "path": "workflow/skills/research-ideation/paper-discovery-fetcher/SKILL.md",
+    "consumes": [
+      "Topic keywords, research questions, or an existing `<topic-root>/synthesis/topic-profile.yaml`.",
+      "Optional `<topic-root>/synthesis/reading-queue.md`, `<topic-root>/synthesis/idea-backlog.md`, or current topic / selected idea scope to bias the search.",
+      "Optional `<topic-root>/synthesis/literature-corpus.jsonl` when it exists — use it as the primary deduplication source before checking local paper folders, `refs.bib`, or existing summaries.",
+      "Optional local paper workspaces, `refs.bib`, or existing reading notes as secondary deduplication checks when the corpus file is absent.",
+      "Optional PaperHunter `data/library.json` when the user has searched or saved papers in PaperHunter and wants to import those favorites/downloads as leads.",
+      "Optional existing `notes/capabilities.yaml` as a hint about available search services; do not create it merely to start a search."
+    ],
+    "produces": [
+      "`<topic-root>/synthesis/topic-profile.yaml`",
+      "`<topic-root>/synthesis/paper-leads.jsonl`",
+      "Optional `<topic-root>/synthesis/search-report.md` when a human-readable search handoff or source audit is actually needed"
+    ],
+    "short_description": "Fetch and refresh literature candidates"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-inbox-triage",
+    "title": "Paper Inbox Triage",
+    "description": "Triage new papers, PDFs, and links into a deduplicated reading queue with a clear next-read decision. Use when Codex needs to process an inbox of unread papers, rank relevance, remove duplicates, or decide what to read first for a topic, project, or deadline.",
+    "path": "workflow/skills/research-ideation/paper-inbox-triage/SKILL.md",
+    "consumes": [
+      "One or more new `<topic-root>/papers/<paper-id>/source.pdf` files, URLs, or raw paper titles.",
+      "Optional `<topic-root>/synthesis/paper-leads.jsonl` or `<topic-root>/synthesis/search-report.md` from `$paper-discovery-fetcher`.",
+      "Optional existing `<topic-root>/synthesis/reading-queue.md`, `<topic-root>/synthesis/idea-backlog.md`, or deadline context.",
+      "Optional `<topic-root>/synthesis/literature-corpus.jsonl` when it exists — check it first before any other source to avoid re-queueing papers the project already has.",
+      "Optional local paper workspaces, `refs.bib`, or existing summaries as secondary deduplication checks when the corpus file is absent.",
+      "Optional topic keywords, target venue, or thesis chapter scope."
+    ],
+    "produces": [
+      "`<topic-root>/synthesis/reading-queue.md`"
+    ],
+    "short_description": "Prioritize new papers and reading queue"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-metadata-normalizer",
+    "title": "Paper Metadata Normalizer",
+    "description": "Extract and normalize paper metadata into a stable `meta.yaml` file. Use when Codex needs to capture or repair title, authors, year, venue, DOI, arXiv ID, or a citation key for a single paper before downstream reading, citation, or writing tasks.",
+    "path": "workflow/skills/research-ideation/paper-metadata-normalizer/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/source.pdf`, the first page, or any existing metadata snippet.",
+      "Optional existing `<topic-root>/papers/<paper-id>/meta.yaml` or `refs.bib` entry for cross-checking.",
+      "Optional filename or folder naming conventions from the local project."
+    ],
+    "produces": [
+      "`<topic-root>/papers/<paper-id>/meta.yaml`"
+    ],
+    "short_description": "Normalize paper metadata into meta.yaml"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-pdf-fetcher",
+    "title": "Paper PDF Fetcher",
+    "description": "Download a selected paper PDF into the local workspace. Use when Codex needs to fetch `source.pdf` for a paper selected from `reading-queue.md`, `paper-leads.jsonl`, an arXiv ID, DOI, or a direct paper URL. Prefer open-access sources first, and use Semantic Scholar for metadata and open PDF availability checks when helpful.",
+    "path": "workflow/skills/research-ideation/paper-pdf-fetcher/SKILL.md",
+    "consumes": [
+      "One selected paper from `<topic-root>/synthesis/reading-queue.md`, `<topic-root>/synthesis/paper-leads.jsonl`, or a direct identifier such as arXiv ID, DOI, or Semantic Scholar paper URL.",
+      "Optional existing `<topic-root>/papers/<paper-id>/meta.yaml` or title string for identifier resolution.",
+      "Optional PaperHunter `downloaded_papers/` file when PaperHunter has already fetched an open PDF and the selected lead records its downloaded filename.",
+      "Optional Semantic Scholar API key or other source-specific credentials when the user has them."
+    ],
+    "produces": [
+      "`<topic-root>/papers/<paper-id>/source.pdf`",
+      "`<topic-root>/papers/<paper-id>/download-report.md`",
+      "`<topic-root>/papers/<paper-id>/manual-fetch-needed.md` when automated acquisition fails for a paper that is still worth reading"
+    ],
+    "short_description": "Download one selected paper PDF"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-summary-writer",
+    "title": "Paper Summary Writer",
+    "description": "Read one external paper from trustworthy Markdown and produce the one requested reading artifact. Summary mode writes the default one-page `summary.md`; structure, questions, and notes modes preserve optional deeper reading outputs without creating every sidecar or rendering every PDF page.",
+    "path": "workflow/skills/research-ideation/paper-summary-writer/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/paper.md` and `meta.yaml`.",
+      "Existing `structure.md`, `summary.md`, `claim-evidence-map.md`, `notes.md`, or `figures/index.md` only when relevant to the selected mode.",
+      "`source.pdf` only for a named evidence, figure, table, or conversion ambiguity that trustworthy Markdown cannot resolve."
+    ],
+    "produces": [
+      "Summary mode: `<topic-root>/papers/<paper-id>/summary.md`.",
+      "Structure mode: `<topic-root>/papers/<paper-id>/structure.md`.",
+      "Questions mode: `<topic-root>/papers/<paper-id>/reading-questions.md`.",
+      "Notes mode: `<topic-root>/papers/<paper-id>/notes.md`. Produce one mode's artifact by default. Do not fan out all four files."
+    ],
+    "short_description": "Create one requested single-paper reading artifact"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "paper-to-markdown",
+    "title": "Paper to Markdown",
+    "description": "Use when Codex needs to turn a local `source.pdf` into `paper.md` through the MinerU pipeline before downstream reading or parsing.",
+    "path": "workflow/skills/research-ideation/paper-to-markdown/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/source.pdf`.",
+      "MinerU access through the local `mineru-pdf-reader` workflow or its packaged conversion script.",
+      "A readable MinerU token source such as `mineru_api_token.txt`, `.mineru_token`, `workflow/api_tokens.env`, or `MINERU_API_TOKEN`.",
+      "Optional `<topic-root>/papers/<paper-id>/meta.yaml` for title and section sanity checks."
+    ],
+    "produces": [
+      "`<topic-root>/papers/<paper-id>/paper.md`",
+      "`<topic-root>/papers/<paper-id>/source md文档/` — MinerU raw output directory containing `document.md` and extracted image files"
+    ],
+    "short_description": "Convert source PDF into clean paper.md with MinerU"
+  },
+  {
+    "part": "research-ideation",
+    "category": "Flow Support",
+    "name": "research-team-mapper",
+    "title": "Research Team Mapper",
+    "description": "Build and maintain a sourced topic-level map of research teams, labs, authors, projects, benchmarks, and public infrastructure from seed papers or public project, lab, and workshop pages. Use when Codex needs to discover who is actively working on a research question, resolve paper authors into teams, create team cards, map one-hop collaboration or project relationships, or refresh a team radar without treating coauthorship as proof of current lab membership.",
+    "path": "workflow/skills/research-ideation/research-team-mapper/SKILL.md",
+    "consumes": [
+      "Optional `<topic-root>/synthesis/literature-corpus.jsonl` as the primary paper inventory.",
+      "Optional `<topic-root>/synthesis/paper-leads.jsonl`, `reading-queue.md`, or selected paper IDs.",
+      "User-provided seed papers, author names, project pages, lab pages, workshop pages, or a tightly scoped public research question.",
+      "Existing `<topic-root>/synthesis/team-corpus.jsonl` when refreshing or extending a map.",
+      "Optional idea IDs or tags for `relevant_to` linkage."
+    ],
+    "produces": [
+      "`<topic-root>/synthesis/team-corpus.jsonl`",
+      "Optional `<topic-root>/synthesis/team-radar.md` only when the user requests a human-readable view or a durable browsing handoff."
+    ],
+    "short_description": "Map active research teams from papers and public sources"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "baseline-checklist-builder",
+    "title": "Baseline Checklist Builder",
+    "description": "List the baselines, controls, and sanity checks required for a credible experiment. Use when Codex needs to turn a hypothesis or reproduction target into a concrete checklist of comparisons that must be included before running or writing experiments.",
+    "path": "workflow/skills/experiment-execution/baseline-checklist-builder/SKILL.md",
+    "consumes": [
+      "`hypothesis.md` or `experiments/plans/reproduction-plan.md`.",
+      "`literature-matrix.md` and relevant `summary.md` files.",
+      "Optional compute budget or time constraints."
+    ],
+    "produces": [
+      "`experiments/plans/baseline-checklist.md`"
+    ],
+    "short_description": "List required baselines and controls"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "experiment-spec-writer",
+    "title": "Experiment Spec Writer",
+    "description": "Write either a compact exploratory run card or a full confirmatory experiment specification in `experiments/plans/experiment-plan.md`. Use when datasets, metrics, variables, seeds, budget, stop conditions, or the scientific contract must be fixed before execution; do not require the full confirmatory form for a reversible noncanonical diagnostic.",
+    "path": "workflow/skills/experiment-execution/experiment-spec-writer/SKILL.md",
+    "consumes": [
+      "For exploratory mode, the research question and the directly relevant local evidence or prior run.",
+      "For confirmatory mode, `hypothesis.md`, `experiments/plans/baseline-checklist.md`, and any relevant `experiments/plans/reproduction-plan.md`.",
+      "Optional `experiments/failures/failure-analysis.md` when a prior anomaly motivates a result-changing adjustment.",
+      "Optional resource constraints such as hardware, time, or advisor guidance.",
+      "Optional target paper or benchmark conventions."
+    ],
+    "produces": [
+      "`experiments/plans/experiment-plan.md`"
+    ],
+    "short_description": "Write compact or confirmatory experiment plans"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "experiment-watchdog",
+    "title": "Experiment Watchdog",
+    "description": "Monitor active and recent runs, classify running/completed/failed/stalled transitions, and persist a short watchdog report only when material state changes. Use for recurring or one-shot monitoring; unchanged sweeps stay silent, and same-contract technical repair/retry is routed automatically rather than becoming a user approval point.",
+    "path": "workflow/skills/experiment-execution/experiment-watchdog/SKILL.md",
+    "consumes": [
+      "`experiments/runs/index.md` and any `experiments/runs/<run-id>/status.json` files.",
+      "Optional `experiments/runs/<run-id>/stdout.log`, `experiments/runs/<run-id>/stderr.log`, and executed notebook snapshots for active or recent runs.",
+      "Optional `notes/capabilities.yaml` when background monitoring is not always enabled.",
+      "Optional stall threshold, current time budget, or alerting policy."
+    ],
+    "produces": [
+      "On first sweep or a material transition: `experiments/runs/watchdog-report.md` and `experiments/runs/watchdog-state.json`",
+      "No file rewrite for an unchanged sweep unless an explicit snapshot is requested"
+    ],
+    "short_description": "Report only material experiment state changes"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "failure-analysis-writer",
+    "title": "Failure Analysis Writer",
+    "description": "Write a structured analysis for a material scientific anomaly, weak or negative result, result-changing data/code issue, or recurring unexplained failure. Do not use for routine network, package, download, scheduler, environment, logging, or resume failures that can be repaired under the same scientific contract.",
+    "path": "workflow/skills/experiment-execution/failure-analysis-writer/SKILL.md",
+    "consumes": [
+      "`experiments/logs/experiment-log.md`, raw error notes, and `experiments/results/summary.md` when available.",
+      "Optional `experiments/runbooks/runbook.md` and `experiments/plans/experiment-plan.md` for intended behavior.",
+      "Optional user focus on one recurring failure mode."
+    ],
+    "produces": [
+      "`experiments/failures/failure-analysis.md`"
+    ],
+    "short_description": "Analyze material scientific experiment failures"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "figure-plot-builder",
+    "title": "Figure Plot Builder",
+    "description": "Build paper-ready plots and caption notes from aggregated results. Use when Codex needs to choose visual encodings, organize the `experiments/plots/` folder, keep a consistent plot pack style, and prepare figure-level takeaways from `experiments/results/summary.md` before manuscript drafting.",
+    "path": "workflow/skills/experiment-execution/figure-plot-builder/SKILL.md",
+    "consumes": [
+      "`experiments/results/summary.md` and any raw tables required for plotting.",
+      "Canonical result IDs, baseline-use status, prediction branch, and anomaly or deviation status recorded in that summary.",
+      "Optional target figure list from `drafts/outline.md`.",
+      "Optional `experiments/conceptual-figures/index.md` when empirical plots need to align with a separate conceptual figure pack.",
+      "Optional style constraints such as monochrome printing or venue figure limits."
+    ],
+    "produces": [
+      "`experiments/plots/`",
+      "`experiments/plots/index.md`"
+    ],
+    "short_description": "Build paper-ready plots and captions"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "hypothesis-framer",
+    "title": "Hypothesis Framer",
+    "description": "Turn a research idea into a falsifiable, measurable hypothesis. Use when Codex needs to define the intervention, expected effect, failure condition, required evidence, and success threshold before designing experiments or writing a story around the project.",
+    "path": "workflow/skills/experiment-execution/hypothesis-framer/SKILL.md",
+    "consumes": [
+      "`<topic-root>/ideas/<id>/idea.md` or a selected item from `<topic-root>/synthesis/idea-backlog.md`.",
+      "`<topic-root>/synthesis/research-gaps.md` when available.",
+      "Optional `<topic-root>/synthesis/literature-corpus.jsonl` for novelty comparison.",
+      "Optional target task, benchmark, or constraint from the user."
+    ],
+    "produces": [
+      "`hypothesis.md`"
+    ],
+    "short_description": "Turn an idea into a testable hypothesis"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "promote-run-outputs",
+    "title": "Promote Run Outputs",
+    "description": "Preview or apply replacement of named canonical experiment outputs when the user asks to consider or perform that replacement. A clear natural-language promotion request may trigger this Skill; never initiate promotion merely because a run completed. Preview is read-only, while apply requires current-task confirmation of the exact plan.",
+    "path": "workflow/skills/experiment-execution/promote-run-outputs/SKILL.md",
+    "consumes": [
+      "In `preview` mode: `experiments/runs/<run-id>/status.json`, logs, config, staged outputs, the runbook or launch record, current canonical outputs, and explicit user intent to consider replacement.",
+      "In `apply` mode: `experiments/runs/<run-id>/promotion.md` with `READY`, its matching `promotion-plan.json`, and explicit current-task confirmation of the displayed source, target, and exact relative file list."
+    ],
+    "produces": [
+      "`experiments/runs/<run-id>/promotion.md` in `preview` mode.",
+      "`experiments/runs/<run-id>/promotion-plan.json` only for a `READY` preview.",
+      "`experiments/runs/<run-id>/promotion-manifest.json`, approved canonical files, and rollback copies under the plan's archive directory in apply mode."
+    ],
+    "short_description": "Preview or apply an exact run-output replacement"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "reproduction-planner",
+    "title": "Reproduction Planner",
+    "description": "Plan how to reproduce a target paper or baseline. Use when Codex needs to turn a paper into a concrete reproduction checklist covering code, environment, data, hidden assumptions, checkpoints, and minimum success conditions before any execution starts.",
+    "path": "workflow/skills/experiment-execution/reproduction-planner/SKILL.md",
+    "consumes": [
+      "`<topic-root>/papers/<paper-id>/summary.md`, `claim-evidence-map.md`, `paper.md`, and `meta.yaml` for the external target paper.",
+      "Optional public code links, repository notes, or environment constraints.",
+      "Optional target fidelity level such as exact reproduction or functional baseline."
+    ],
+    "produces": [
+      "`experiments/plans/reproduction-plan.md`"
+    ],
+    "short_description": "Plan reproduction of a target paper"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "result-aggregator",
+    "title": "Result Aggregator",
+    "description": "Aggregate selected experimental outputs into `experiments/results/summary.md` with traceable numbers, baseline deltas, uncertainty, bounded interpretations, and explicit limitations.",
+    "path": "workflow/skills/experiment-execution/result-aggregator/SKILL.md",
+    "consumes": [
+      "Raw metrics and structured outputs from explicitly selected runs.",
+      "Run logs, configs, and the runbook.",
+      "`hypothesis.md` and `experiments/plans/baseline-checklist.md` when those artifacts exist.",
+      "`experiments/failures/failure-analysis.md` when an anomaly led to a proposed exclusion, seed change, transformation, test change, or data correction.",
+      "Project-specific metric definitions and comparison rules."
+    ],
+    "produces": [
+      "`experiments/results/summary.md`"
+    ],
+    "short_description": "Aggregate raw runs into result summary"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "run-experiment",
+    "title": "Run Experiment",
+    "description": "Launch READY exploratory or confirmatory runs, make bounded same-contract technical repairs and retries, and preserve proportional run-local state. An optional explicit record mode can update a legacy experiment log without making append-only logging a required workflow step.",
+    "path": "workflow/skills/experiment-execution/run-experiment/SKILL.md",
+    "consumes": [
+      "`experiments/runbooks/runbook.md` and `experiments/plans/experiment-plan.md`.",
+      "Optional environment notes, source, run registry, current run directories, and paper-facing evidence rules directly relevant to execution.",
+      "`infrastructure/compute-hosts.md` plus a fresh host snapshot before GPU work.",
+      "Optional existing `experiments/logs/experiment-log.md` only in record mode."
+    ],
+    "produces": [
+      "Run mode:",
+      "`experiments/runs/index.md` for named or multi-run work;",
+      "`experiments/runs/<run-id>/status.json`;",
+      "`experiments/runs/<run-id>/stdout.log` and `stderr.log` when applicable;",
+      "optional `launch.md` for long, costly, distributed, confirmatory, or otherwise non-obvious launches;",
+      "optional `attempt-N/` state for same-contract technical retries;",
+      "optional `executed.ipynb` for notebook-first execution;",
+      "only bounded code, configuration, entrypoint, logging, and focused test changes required by the existing scientific contract.",
+      "Record mode: optional update to an existing `experiments/logs/experiment-log.md` when the user explicitly asks."
+    ],
+    "short_description": "Run experiments with proportional run-local state"
+  },
+  {
+    "part": "experiment-execution",
+    "category": "Execution and Results",
+    "name": "runbook-generator",
+    "title": "Runbook Generator",
+    "description": "Translate an experiment plan into either a compact exploratory runbook or a full long-run/confirmatory runbook. Use when Codex needs copy-runnable commands, environment and output routing, a smoke check, and READY or BLOCKED status; require heartbeat, checkpoint, and stall machinery only for genuinely long, costly, distributed, or opaque work.",
+    "path": "workflow/skills/experiment-execution/runbook-generator/SKILL.md",
+    "consumes": [
+      "`experiments/plans/experiment-plan.md`, `hypothesis.md`, and `experiments/plans/baseline-checklist.md`.",
+      "Optional `experiments/failures/failure-analysis.md` when the experiment plan includes an anomaly-dependent adjustment.",
+      "Optional environment constraints, compute queue rules, or codebase naming conventions.",
+      "Optional reproduction-specific requirements from `experiments/plans/reproduction-plan.md`."
+    ],
+    "produces": [
+      "`experiments/runbooks/runbook.md`"
+    ],
+    "short_description": "Create compact or full experiment runbooks"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "abstract-title-polisher",
+    "title": "Abstract Title Polisher",
+    "description": "Polish the title, abstract, and one-sentence pitch for a paper. Use when Codex needs to generate `drafts/abstract.md`, multiple `drafts/title-options.md` candidates, or concise contribution framing after the full paper story is already stable.",
+    "path": "workflow/skills/paper-writing/abstract-title-polisher/SKILL.md",
+    "consumes": [
+      "`drafts/outline.md`, `drafts/intro.md`, and `drafts/method-results.md`.",
+      "Optional `drafts/story-brief.md` and `drafts/contribution-brief.md` when the title or abstract should express an already-selected story or contribution ladder.",
+      "Optional `<paper-dir>/INVARIANTS.md` from the active paper workspace. When present, it is a required constraint registry even though it lives outside `drafts/`.",
+      "Optional `experiments/results/summary.md` when the abstract or title refers to empirical findings.",
+      "Optional `drafts/style-profile.md` when author, venue, or field style has been calibrated for this manuscript.",
+      "Optional target venue length limit or title style preference.",
+      "Optional advisor or collaborator feedback on positioning."
+    ],
+    "produces": [
+      "`drafts/abstract.md`",
+      "Optional `drafts/title-options.md` when the title is still unstable or the user wants multiple candidates"
+    ],
+    "short_description": "Polish abstract, title, and pitch"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "claim-reference-auditor",
+    "title": "Claim Reference Auditor",
+    "description": "Narrow audit for whether manuscript claims are actually supported by their citations. Use when Codex needs to check claim-citation faithfulness before package readiness or manuscript review and produce `{paper-dir}/claim-ref-audit.md`.",
+    "path": "workflow/skills/paper-writing/claim-reference-auditor/SKILL.md",
+    "consumes": [
+      "Current manuscript draft from `paper/` or `drafts/`; prefer a materialized `paper/` workspace when available.",
+      "`refs.bib`.",
+      "Optional `<paper-dir>/INVARIANTS.md`, `claim-evidence-map.md`, and `experiments/results/summary.md` when citation wording also carries a paper-specific scope or evidence boundary.",
+      "Optional `<paper-dir>/provenance.yaml` for citation locator or evidence trace hints.",
+      "Optional locator metadata from refs, notes, summaries, or bibliography side metadata when available."
+    ],
+    "produces": [
+      "`<paper-dir>/claim-ref-audit.md`"
+    ],
+    "short_description": "Audit whether claims match cited evidence"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "conceptual-figure-builder",
+    "title": "Conceptual Figure Builder",
+    "description": "Specify, explore, build, revise, or explicitly critique one paper-facing conceptual or method figure. Use spec, explore, build, or critique mode for the requested action; build is the default when the content direction is settled, and no mode automatically triggers another.",
+    "path": "workflow/skills/paper-writing/conceptual-figure-builder/SKILL.md",
+    "consumes": [
+      "Relevant story, contribution, outline, manuscript, evidence, or explicit user instruction.",
+      "Optional `drafts/figures/<figure-id>.spec.md`, prior render, editable source, selected reference, or `<figure-id>.visual-direction.md`.",
+      "`<paper-dir>/INVARIANTS.md` when wording affects a protected claim."
+    ],
+    "produces": [
+      "Spec mode: `drafts/figures/<figure-id>.spec.md`.",
+      "Explore mode, only when requested:",
+      "`experiments/conceptual-figures/<figure-id>.candidate-board.md`;",
+      "optional `<figure-id>.visual-direction.md` and up to two candidate images.",
+      "Build mode:",
+      "`experiments/conceptual-figures/<figure-id>.png`;",
+      "optional SVG, overlay, scaffold, prompt, or path manifest only when the production method needs it;",
+      "optional `<figure-id>.qa.md` or existing figure index update when the project already keeps that record or the user requests it.",
+      "Critique mode: in-session findings by default; optional `experiments/conceptual-figures/<figure-id>.critique.md` when requested."
+    ],
+    "short_description": "Specify, explore, build, or critique one paper figure"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "intro-problem-framer",
+    "title": "Intro Problem Framer",
+    "description": "Draft the problem framing for a paper introduction. Use when Codex needs to write `drafts/intro.md` with the problem, stakes, gap, high-level approach, and contribution framing without collapsing into generic method-first writing.",
+    "path": "workflow/skills/paper-writing/intro-problem-framer/SKILL.md",
+    "consumes": [
+      "`drafts/outline.md`, optional `drafts/story-brief.md`, `drafts/contribution-brief.md`, and `research-gaps.md`.",
+      "Optional `claim-evidence-map.md`, `experiments/results/summary.md`, and `<paper-dir>/INVARIANTS.md` when the introduction will state contribution boundaries or paper-facing claims.",
+      "Optional `drafts/style-profile.md` when author, venue, or field style has been calibrated for this manuscript.",
+      "Optional target venue or audience expectation.",
+      "Supporting summaries for the most relevant prior work when available. If the topic has a shared literature corpus or idea-level literature matrix, inspect it before drafting the prior-work motivation bridge; do not assume Related Work will supply all literature context later."
+    ],
+    "produces": [
+      "`drafts/intro.md`"
+    ],
+    "short_description": "Draft the introduction problem framing"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "method-results-drafter",
+    "title": "Method Results Drafter",
+    "description": "Draft the methods and results sections from active idea artifacts. Use when Codex needs to turn experiment plans, result summaries, and plots into `drafts/method-results.md` that is specific, evidence-backed, and ready for later polishing.",
+    "path": "workflow/skills/paper-writing/method-results-drafter/SKILL.md",
+    "consumes": [
+      "`experiments/plans/experiment-plan.md`, `experiments/results/summary.md`, `experiments/plots/index.md`, and `drafts/outline.md`.",
+      "Optional `experiments/conceptual-figures/index.md` when methods/results prose needs to reference a framework figure, pipeline diagram, or method schematic.",
+      "Optional `drafts/story-brief.md` when results prose should cash out the selected central question and evidence ladder.",
+      "Optional `claim-evidence-map.md` and `<paper-dir>/INVARIANTS.md` when drafting or revising paper-facing result interpretations.",
+      "Optional `experiments/failures/failure-analysis.md` for limitations or negative findings.",
+      "Optional `refs.bib` when methods/results prose needs to mention prior work using existing citation keys.",
+      "Optional `drafts/style-profile.md` when author, venue, or field style has been calibrated for this manuscript.",
+      "Optional target venue style constraints."
+    ],
+    "produces": [
+      "`drafts/method-results.md`"
+    ],
+    "short_description": "Draft methods, results, and discussion"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "paper-finish-loop",
+    "title": "Paper Finish Loop",
+    "description": "Build, finish, or check one named paper candidate. Use build mode to materialize and compile, finish mode to repair a bounded package issue, or submission-check mode for a read-only blocker assessment; no mode requires an independent review or promotes the candidate.",
+    "path": "workflow/skills/paper-writing/paper-finish-loop/SKILL.md",
+    "consumes": [
+      "Exact `<paper-dir>/`, source entry point, bibliography, figures, venue files, build instructions, and `<paper-dir>/INVARIANTS.md`.",
+      "Current result or claim evidence only when claim wording or displayed numbers are in scope.",
+      "Venue rules and deadline constraints in submission-check mode."
+    ],
+    "produces": [
+      "Build or finish mode:",
+      "`<paper-dir>/` updates within the requested scope;",
+      "`<paper-dir>/tex-profile.json` when environment probing is needed;",
+      "`<paper-dir>/finish-report.md`;",
+      "optional `latex-sanity.txt` or `pdf-packaging-report.json` only when the corresponding check ran.",
+      "Submission-check mode: `<paper-dir>/submission-checklist.md`."
+    ],
+    "short_description": "Build, finish, or check one paper package"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "paper-outline-builder",
+    "title": "Paper Outline Builder",
+    "description": "Build an evidence-linked manuscript outline and storyline from the current active idea evidence. Use when Codex needs to create `drafts/outline.md`, choose the paper's narrative spine, map claims to evidence, assign section and paragraph roles, plan key sentence functions, designate the hero figure, or budget the paper before drafting.",
+    "path": "workflow/skills/paper-writing/paper-outline-builder/SKILL.md",
+    "consumes": [
+      "`hypothesis.md`, `experiments/results/summary.md`, and relevant gap notes.",
+      "The nearest project rules and `notes/CURRENT.md` for active-candidate and protected-directory boundaries.",
+      "Optional `drafts/story-brief.md` when the paper's narrative angle has already been selected by `$paper-story-framer`.",
+      "Optional `drafts/contribution-brief.md` when the paper's contribution ladder has already been sharpened by `$paper-story-framer`.",
+      "Optional `experiments/plots/index.md`, `experiments/conceptual-figures/index.md`, or target venue constraints.",
+      "Optional current thesis chapter or paper positioning context."
+    ],
+    "produces": [
+      "`drafts/outline.md`",
+      "Optional `<paper-dir>/INVARIANTS.md` only when an existing writable paper candidate is resolved unambiguously and either the user requested an invariant update or the approved paper-global claim structure materially changed. This is a paper-global constraint registry, not a draft section."
+    ],
+    "short_description": "Build drafting-ready, evidence-linked paper outlines"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "paper-story-framer",
+    "title": "Paper Story Framer",
+    "description": "Frame a paper's evidence-backed story or contribution. Use story mode when the central reader question or narrative lens is unclear, and contribution mode when the story is stable but the novelty delta, contribution ladder, or field-level significance needs sharpening.",
+    "path": "workflow/skills/paper-writing/paper-story-framer/SKILL.md",
+    "consumes": [
+      "`hypothesis.md`, `claim-evidence-map.md`, and `experiments/results/summary.md` when present.",
+      "Optional `literature-matrix.md`, current outline or manuscript, target venue, and `<paper-dir>/INVARIANTS.md`.",
+      "Existing `drafts/story-brief.md` or `drafts/contribution-brief.md` when revising that mode."
+    ],
+    "produces": [
+      "Story mode: `drafts/story-brief.md`.",
+      "Contribution mode: `drafts/contribution-brief.md`."
+    ],
+    "short_description": "Frame an evidence-backed story or contribution"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "paper-style-auditor",
+    "title": "Paper Style Auditor",
+    "description": "Run a read-only full-manuscript language, framing, and reader-experience audit. Find AI-flavored prose, unclear jargon, defensive positioning, weak contribution framing, awkward limitations, and internal workflow leakage without editing the paper.",
+    "path": "workflow/skills/paper-writing/paper-style-auditor/SKILL.md",
+    "consumes": [
+      "A named manuscript source and optional rendered PDF.",
+      "`<paper-dir>/INVARIANTS.md`.",
+      "Optional style profile, translation, experiment summary, and claim-evidence mapping when framing depends on them."
+    ],
+    "produces": [
+      "`<paper-dir>/style-audit.md`"
+    ],
+    "short_description": "Audit manuscript style, framing, and readability"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "po-related-work-backend",
+    "title": "PO Related-Work Backend",
+    "description": "Use when Codex needs to run PaperOrchestra only as an optional related-work backend, starting from native project state and literature corpus, to produce a PO-side draft scaffold without transferring canonical manuscript ownership.",
+    "path": "workflow/skills/paper-writing/po-related-work-backend/SKILL.md",
+    "consumes": [
+      "`notes/project-state.md` as the project-local source of thesis framing and claim boundaries.",
+      "`<topic-root>/synthesis/literature-corpus.jsonl` as the read-only topic corpus used for seed selection.",
+      "Optional `drafts/outline.md` when the native manuscript already has a useful cluster structure.",
+      "Optional existing `po-workspace/` when resuming a prior related-work-only trial.",
+      "Optional `claim-evidence-map.md` or `experiments/results/summary.md` when the introduction framing needs a tighter bounded-claim anchor."
+    ],
+    "produces": [
+      "`po-workspace/seeded_candidates.json`",
+      "`po-workspace/raw_candidates.json`",
+      "`po-workspace/deduped_candidates.json`",
+      "`po-workspace/cache/s2_cache.json`",
+      "`po-workspace/raw_pool.json`",
+      "`po-workspace/s2_verification_report.json`",
+      "`po-workspace/citation_pool.json` (intermediate only; see Handoff)",
+      "`po-workspace/refs.bib` (intermediate only; see Handoff)",
+      "`po-workspace/drafts/intro_relwork.tex`",
+      "Optional `po-workspace/comparison-notes.md`",
+      "Optional `po-workspace/trial-summary.md`"
+    ],
+    "short_description": "Build optional PaperOrchestra related-work scaffolds"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "promote-paper-version",
+    "title": "Promote Paper Version",
+    "description": "Preview or apply replacement of a named canonical paper when the user asks to consider or perform that replacement from one exact versioned candidate. A clear natural-language promotion request may trigger this Skill; never initiate promotion merely because a candidate is ready. Preview is read-only, while apply requires current-task confirmation of the exact plan.",
+    "path": "workflow/skills/paper-writing/promote-paper-version/SKILL.md",
+    "consumes": [
+      "In `preview` mode: the exact named candidate and canonical paper directories, source entry point, rendered PDF, figures, bibliography, build log, project-local replacement rules, and directly relevant invariants/evidence.",
+      "In `apply` mode: `notes/promotion-plan.md` and `notes/promotion-plan.json` with current `READY` status, plus explicit current-task confirmation of the displayed source, target, relative file list, exclusions, and archive location."
+    ],
+    "produces": [
+      "`notes/promotion-plan.md` in `preview` mode.",
+      "`notes/promotion-plan.json` only for a `READY` preview.",
+      "`<canonical-paper-dir>/promotion-manifest.json`, the named canonical paper directory, and a timestamped archive of the previous package in apply mode."
+    ],
+    "short_description": "Preview or apply a recoverable paper replacement"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "related-work-weaver",
+    "title": "Related Work Weaver",
+    "description": "Turn a literature matrix into related work prose. Use when Codex needs to write `drafts/related-work.md`, cluster prior work into meaningful groups, and position the current paper against those groups without producing a laundry list of citations.",
+    "path": "workflow/skills/paper-writing/related-work-weaver/SKILL.md",
+    "consumes": [
+      "Optional `<topic-root>/synthesis/literature-corpus.jsonl` when it exists — use it as the primary paper inventory before scanning individual summaries or notes.",
+      "The active `literature-matrix.md`, `<topic-root>/synthesis/topic-map.md`, and `refs.bib`.",
+      "Optional `claim-evidence-map.md` and `<paper-dir>/INVARIANTS.md` when the related work will revise the paper's novelty claim or contribution boundary.",
+      "Optional `drafts/outline.md` or venue conventions for related work style.",
+      "Optional `drafts/style-profile.md` when author, venue, or field style has been calibrated for this manuscript.",
+      "Optional `drafts/contribution-brief.md` when positioning the paper's novelty delta and nearest-prior-work contrast against related clusters.",
+      "Optional `po-workspace/drafts/intro_relwork.tex` and `po-workspace/comparison-notes.md` when a PO backend scaffold is being selectively transplanted or used as a comparison baseline. These are comparison artifacts only; do not treat them as canonical prose. Route from `$po-related-work-backend` only when an explicit PO comparison was requested.",
+      "Optional summaries of the most important comparison papers."
+    ],
+    "produces": [
+      "`drafts/related-work.md`"
+    ],
+    "short_description": "Weave matrix into related work prose"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "reviewer-response-writer",
+    "title": "Reviewer Response Writer",
+    "description": "Draft a point-by-point reviewer response and evidence-backed revision plan in `rebuttal.md`. Keep rebuttal drafting separate from manuscript editing unless the user explicitly approves both.",
+    "path": "workflow/skills/paper-writing/reviewer-response-writer/SKILL.md",
+    "consumes": [
+      "Reviewer comments, decision letter, and author notes.",
+      "Current manuscript, experiment summary, relevant new results, and venue constraints.",
+      "Optional active paper invariants when planning claim-facing revisions."
+    ],
+    "produces": [
+      "`rebuttal.md`"
+    ],
+    "short_description": "Draft point-by-point reviewer responses"
+  },
+  {
+    "part": "paper-writing",
+    "category": "Writing and Submission",
+    "name": "targeted-critic",
+    "title": "Targeted Critic",
+    "description": "Give a named artifact, evidence bundle, or manuscript one bounded read-only critique when the user requests it. A clear natural-language review or critique request may trigger this Skill; never run it as a prerequisite, automatic follow-up, or repeat review loop. Supports artifact, evidence, and paper modes.",
+    "path": "workflow/skills/paper-writing/targeted-critic/SKILL.md",
+    "consumes": [
+      "The exact named target and requested scope.",
+      "The single criterion or directly relevant evidence and invariants.",
+      "In paper mode, the current source or trustworthy Markdown plus the rendered PDF only when layout is in scope.",
+      "Prior findings only for an explicitly requested follow-up."
+    ],
+    "produces": [
+      "In-session findings by default.",
+      "Optional user-requested durable report at one of:",
+      "`reviews/auto-review.md` for evidence mode;",
+      "`<paper-dir>/review-log.md` for paper mode;",
+      "a user-named `critique-output.md` for artifact mode. Never create a durable report merely to prove the critique happened."
+    ],
+    "short_description": "Bounded artifact, evidence, or paper critique"
+  },
+  {
+    "part": "standalone",
+    "category": "Standalone Utility",
+    "name": "paper-presentation-builder",
+    "title": "Paper Presentation Builder",
+    "description": "Use when a research paper, PDF, draft, or project needs a PowerPoint/PPTX, research talk deck, thesis/group-meeting presentation, conference talk storyboard, slide script, or paper-to-slides workflow.",
+    "path": "workflow/skills/standalone/paper-presentation-builder/SKILL.md",
+    "consumes": [
+      "Source paper, PDF, Markdown, LaTeX, manuscript draft, notes, or URL supplied by the user.",
+      "Optional standalone output root supplied by the user, such as an explicit `--output-dir` or named destination folder.",
+      "Optional `paper/` or `<paper-dir>/` workspace when a canonical manuscript exists and the user wants the deck to follow that manuscript.",
+      "Optional `drafts/story-brief.md`, `drafts/contribution-brief.md`, `drafts/outline.md`, `claim-evidence-map.md`, and `experiments/results/summary.md` when the deck should follow the current paper story.",
+      "Optional `experiments/plots/index.md` and exported figure assets when result visuals are needed.",
+      "Optional `experiments/conceptual-figures/index.md` and figure exports when framework, concept, or method visuals already exist.",
+      "Optional `notes/project-state.md` when the user is deliberately working from an idea workspace and wants current project state checked.",
+      "Optional user constraints: audience, duration, target venue, slide count, delivery language, speaker-notes depth, template/reference deck, and output format."
+    ],
+    "produces": [
+      "`presentations/<deck-id>/` relative to the selected output root.",
+      "`presentations/<deck-id>/deck-brief.md`",
+      "`presentations/<deck-id>/storyboard.md`",
+      "`presentations/<deck-id>/style-spec.md`",
+      "`presentations/<deck-id>/asset-manifest.md`",
+      "Optional `presentations/<deck-id>/slide-script.md` when speaker notes or a timed narration are requested.",
+      "Optional `presentations/<deck-id>/contact-sheet.png` when a rendered deck or image previews are produced.",
+      "Optional `presentations/<deck-id>/qa.md` when a rendered deck is reviewed.",
+      "Optional `presentations/<deck-id>/<deck-id>.pptx` when the final requested artifact is a local PowerPoint deck."
+    ],
+    "short_description": "Paper Presentation Builder"
+  }
+]

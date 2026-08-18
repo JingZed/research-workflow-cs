@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figure Plot Builder"
+  short_description: "Build paper-ready plots and captions"
+  default_prompt: "Use $figure-plot-builder to turn this results summary into a consistent set of paper-ready plots."

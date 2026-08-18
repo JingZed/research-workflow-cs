@@ -1,0 +1,4 @@
+interface:
+  display_name: "Result Aggregator"
+  short_description: "Aggregate raw runs into result summary"
+  default_prompt: "Use $result-aggregator to turn these raw experiment outputs into a normalized results summary."

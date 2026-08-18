@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claim Reference Auditor"
+  short_description: "Audit whether claims match cited evidence"
+  default_prompt: "Use $claim-reference-auditor to check whether these manuscript claims match their citations."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Outline Builder"
+  short_description: "Build drafting-ready, evidence-linked paper outlines"
+  default_prompt: "Use $paper-outline-builder to build a drafting-ready, evidence-linked outline with section and paragraph roles and key sentence functions for the active paper candidate allowed by my project rules."

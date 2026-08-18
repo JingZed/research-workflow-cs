@@ -1,0 +1,4 @@
+interface:
+  display_name: "Abstract Title Polisher"
+  short_description: "Polish abstract, title, and pitch"
+  default_prompt: "Use $abstract-title-polisher to generate strong title options and a precise abstract for this paper."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Citation Library Maintainer"
+  short_description: "Merge and normalize refs.bib entries"
+  default_prompt: "Use $citation-library-maintainer to clean and deduplicate my refs.bib entries for these papers."

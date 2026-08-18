@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Team Mapper"
+  short_description: "Map active research teams from papers and public sources"
+  default_prompt: "Use $research-team-mapper to build a sourced one-hop map of active teams for this research topic."

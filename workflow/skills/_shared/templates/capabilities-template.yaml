@@ -1,0 +1,7 @@
+version: 1
+capabilities:
+  external_reviewer: off
+  paper_distill_mcp: auto
+  watchdog: off
+  remote_run: off
+  paper_build: off

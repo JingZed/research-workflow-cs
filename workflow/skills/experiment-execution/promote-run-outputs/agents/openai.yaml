@@ -1,0 +1,4 @@
+interface:
+  display_name: "Promote Run Outputs"
+  short_description: "Preview or apply an exact run-output replacement"
+  default_prompt: "Use $promote-run-outputs to preview or apply this user-requested experiment-output replacement."

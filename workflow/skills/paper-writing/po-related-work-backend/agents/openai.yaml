@@ -1,0 +1,4 @@
+interface:
+  display_name: "PO Related-Work Backend"
+  short_description: "Build optional PaperOrchestra related-work scaffolds"
+  default_prompt: "Use $po-related-work-backend to build an optional PaperOrchestra related-work scaffold."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Intro Problem Framer"
+  short_description: "Draft the introduction problem framing"
+  default_prompt: "Use $intro-problem-framer to draft the introduction problem framing for this paper."

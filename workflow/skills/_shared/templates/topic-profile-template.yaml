@@ -1,0 +1,13 @@
+topics:
+  - name: primary-topic
+    question: one-sentence research question
+    keywords:
+      - keyword 1
+      - keyword 2
+    exclusions:
+      - unrelated keyword
+    preferred_sources:
+      - arxiv
+      - semantic-scholar
+    freshness_window_days: 30
+    max_candidates: 30

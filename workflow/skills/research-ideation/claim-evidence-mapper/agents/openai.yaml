@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claim Evidence Mapper"
+  short_description: "Audit an external paper's claim support"
+  default_prompt: "Use $claim-evidence-mapper to map the claims in this external paper to its evidence, assumptions, and gaps."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Idea Backlog Manager"
+  short_description: "Rank, promote, and activate research ideas"
+  default_prompt: "Use $idea-backlog-manager to rank, promote, or activate a research idea with a validated registry and resume state."

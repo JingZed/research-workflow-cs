@@ -1,0 +1,4 @@
+interface:
+  display_name: "Runbook Generator"
+  short_description: "Create compact or full experiment runbooks"
+  default_prompt: "Use $runbook-generator to help with this task."

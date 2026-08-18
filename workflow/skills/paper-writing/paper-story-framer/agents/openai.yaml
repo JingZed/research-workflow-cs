@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Story Framer"
+  short_description: "Frame an evidence-backed story or contribution"
+  default_prompt: "Use $paper-story-framer in story or contribution mode for this paper."

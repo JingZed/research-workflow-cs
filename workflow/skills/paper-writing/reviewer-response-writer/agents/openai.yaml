@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reviewer Response Writer"
+  short_description: "Draft point-by-point reviewer responses"
+  default_prompt: "Use $reviewer-response-writer to turn these reviewer comments into a clear point-by-point rebuttal draft."

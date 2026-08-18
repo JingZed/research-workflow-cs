@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figure Table Extractor"
+  short_description: "Extract figure assets and caption index"
+  default_prompt: "Use $figure-table-extractor to export figures and tables from this paper into a reusable index."

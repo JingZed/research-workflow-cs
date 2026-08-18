@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conceptual Figure Builder"
+  short_description: "Specify, explore, build, or critique one paper figure"
+  default_prompt: "Use $conceptual-figure-builder in the requested mode for this named paper figure."

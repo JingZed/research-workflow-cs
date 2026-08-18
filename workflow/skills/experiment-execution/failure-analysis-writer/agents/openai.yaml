@@ -1,0 +1,4 @@
+interface:
+  display_name: "Failure Analysis Writer"
+  short_description: "Analyze material scientific experiment failures"
+  default_prompt: "Use $failure-analysis-writer to help with this task."

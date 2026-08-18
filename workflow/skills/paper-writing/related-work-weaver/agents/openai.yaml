@@ -1,0 +1,4 @@
+interface:
+  display_name: "Related Work Weaver"
+  short_description: "Weave matrix into related work prose"
+  default_prompt: "Use $related-work-weaver to turn my literature matrix into a concise related work section."

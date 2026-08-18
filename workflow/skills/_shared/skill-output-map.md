@@ -1,0 +1,272 @@
+# Skill Output Map
+
+This file is generated from each skill's `## Produce` section. Use it as the owner map for what a skill may create and where it should write it.
+
+- Only create artifacts listed under the triggered skill's `## Produce` section.
+- `## Consume` entries are inputs, not a checklist of files to create.
+- Optional bullets stay optional unless their condition is true or the user requests that output.
+
+## By Skill
+
+### Research Ideation
+- `citation-library-maintainer`
+  - `refs.bib`
+- `claim-evidence-mapper`
+  - `<topic-root>/papers/<paper-id>/claim-evidence-map.md`
+- `figure-table-extractor`
+  - `<topic-root>/papers/<paper-id>/figures/`
+  - `<topic-root>/papers/<paper-id>/figures/index.md`
+- `idea-backlog-manager`
+  - `<topic-root>/synthesis/idea-backlog.md`
+  - Optional `<topic-root>/ideas/registry.yaml` when the user explicitly promotes or changes the status of an idea
+  - Optional `<topic-root>/ideas/<id>/idea.md` when the user explicitly promotes one backlog item
+  - Optional `<topic-root>/ideas/<id>/notes/CURRENT.md` and `<topic-root>/ideas/<id>/notes/project-state.md` when the user explicitly activates a promoted idea
+- `literature-corpus-maintainer`
+  - `<topic-root>/synthesis/literature-corpus.jsonl`
+- `literature-matrix-builder`
+  - Matrix mode:
+  - `<topic-root>/synthesis/literature-matrix.md`, or
+  - `<topic-root>/ideas/<id>/literature-matrix.md` for one explicit idea.
+  - Map mode: `<topic-root>/synthesis/topic-map.md`.
+  - Gaps mode: `<topic-root>/synthesis/research-gaps.md`. Produce one mode's artifact unless the user explicitly asks for several.
+- `paper-discovery-fetcher`
+  - `<topic-root>/synthesis/topic-profile.yaml`
+  - `<topic-root>/synthesis/paper-leads.jsonl`
+  - Optional `<topic-root>/synthesis/search-report.md` when a human-readable search handoff or source audit is actually needed
+- `paper-inbox-triage`
+  - `<topic-root>/synthesis/reading-queue.md`
+- `paper-metadata-normalizer`
+  - `<topic-root>/papers/<paper-id>/meta.yaml`
+- `paper-pdf-fetcher`
+  - `<topic-root>/papers/<paper-id>/source.pdf`
+  - `<topic-root>/papers/<paper-id>/download-report.md`
+  - `<topic-root>/papers/<paper-id>/manual-fetch-needed.md` when automated acquisition fails for a paper that is still worth reading
+- `paper-summary-writer`
+  - Summary mode: `<topic-root>/papers/<paper-id>/summary.md`.
+  - Structure mode: `<topic-root>/papers/<paper-id>/structure.md`.
+  - Questions mode: `<topic-root>/papers/<paper-id>/reading-questions.md`.
+  - Notes mode: `<topic-root>/papers/<paper-id>/notes.md`. Produce one mode's artifact by default. Do not fan out all four files.
+- `paper-to-markdown`
+  - `<topic-root>/papers/<paper-id>/paper.md`
+  - `<topic-root>/papers/<paper-id>/source md文档/` — MinerU raw output directory containing `document.md` and extracted image files
+- `research-team-mapper`
+  - `<topic-root>/synthesis/team-corpus.jsonl`
+  - Optional `<topic-root>/synthesis/team-radar.md` only when the user requests a human-readable view or a durable browsing handoff.
+
+### Experiment Execution
+- `baseline-checklist-builder`
+  - `experiments/plans/baseline-checklist.md`
+- `experiment-spec-writer`
+  - `experiments/plans/experiment-plan.md`
+- `experiment-watchdog`
+  - On first sweep or a material transition: `experiments/runs/watchdog-report.md` and `experiments/runs/watchdog-state.json`
+  - No file rewrite for an unchanged sweep unless an explicit snapshot is requested
+- `failure-analysis-writer`
+  - `experiments/failures/failure-analysis.md`
+- `figure-plot-builder`
+  - `experiments/plots/`
+  - `experiments/plots/index.md`
+- `hypothesis-framer`
+  - `hypothesis.md`
+- `promote-run-outputs`
+  - `experiments/runs/<run-id>/promotion.md` in `preview` mode.
+  - `experiments/runs/<run-id>/promotion-plan.json` only for a `READY` preview.
+  - `experiments/runs/<run-id>/promotion-manifest.json`, approved canonical files, and rollback copies under the plan's archive directory in apply mode.
+- `reproduction-planner`
+  - `experiments/plans/reproduction-plan.md`
+- `result-aggregator`
+  - `experiments/results/summary.md`
+- `run-experiment`
+  - Run mode:
+  - `experiments/runs/index.md` for named or multi-run work;
+  - `experiments/runs/<run-id>/status.json`;
+  - `experiments/runs/<run-id>/stdout.log` and `stderr.log` when applicable;
+  - optional `launch.md` for long, costly, distributed, confirmatory, or otherwise non-obvious launches;
+  - optional `attempt-N/` state for same-contract technical retries;
+  - optional `executed.ipynb` for notebook-first execution;
+  - only bounded code, configuration, entrypoint, logging, and focused test changes required by the existing scientific contract.
+  - Record mode: optional update to an existing `experiments/logs/experiment-log.md` when the user explicitly asks.
+- `runbook-generator`
+  - `experiments/runbooks/runbook.md`
+
+### Paper Writing
+- `abstract-title-polisher`
+  - `drafts/abstract.md`
+  - Optional `drafts/title-options.md` when the title is still unstable or the user wants multiple candidates
+- `claim-reference-auditor`
+  - `<paper-dir>/claim-ref-audit.md`
+- `conceptual-figure-builder`
+  - Spec mode: `drafts/figures/<figure-id>.spec.md`.
+  - Explore mode, only when requested:
+  - `experiments/conceptual-figures/<figure-id>.candidate-board.md`;
+  - optional `<figure-id>.visual-direction.md` and up to two candidate images.
+  - Build mode:
+  - `experiments/conceptual-figures/<figure-id>.png`;
+  - optional SVG, overlay, scaffold, prompt, or path manifest only when the production method needs it;
+  - optional `<figure-id>.qa.md` or existing figure index update when the project already keeps that record or the user requests it.
+  - Critique mode: in-session findings by default; optional `experiments/conceptual-figures/<figure-id>.critique.md` when requested.
+- `intro-problem-framer`
+  - `drafts/intro.md`
+- `method-results-drafter`
+  - `drafts/method-results.md`
+- `paper-finish-loop`
+  - Build or finish mode:
+  - `<paper-dir>/` updates within the requested scope;
+  - `<paper-dir>/tex-profile.json` when environment probing is needed;
+  - `<paper-dir>/finish-report.md`;
+  - optional `latex-sanity.txt` or `pdf-packaging-report.json` only when the corresponding check ran.
+  - Submission-check mode: `<paper-dir>/submission-checklist.md`.
+- `paper-outline-builder`
+  - `drafts/outline.md`
+  - Optional `<paper-dir>/INVARIANTS.md` only when an existing writable paper candidate is resolved unambiguously and either the user requested an invariant update or the approved paper-global claim structure materially changed. This is a paper-global constraint registry, not a draft section.
+- `paper-story-framer`
+  - Story mode: `drafts/story-brief.md`.
+  - Contribution mode: `drafts/contribution-brief.md`.
+- `paper-style-auditor`
+  - `<paper-dir>/style-audit.md`
+- `po-related-work-backend`
+  - `po-workspace/seeded_candidates.json`
+  - `po-workspace/raw_candidates.json`
+  - `po-workspace/deduped_candidates.json`
+  - `po-workspace/cache/s2_cache.json`
+  - `po-workspace/raw_pool.json`
+  - `po-workspace/s2_verification_report.json`
+  - `po-workspace/citation_pool.json` (intermediate only; see Handoff)
+  - `po-workspace/refs.bib` (intermediate only; see Handoff)
+  - `po-workspace/drafts/intro_relwork.tex`
+  - Optional `po-workspace/comparison-notes.md`
+  - Optional `po-workspace/trial-summary.md`
+- `promote-paper-version`
+  - `notes/promotion-plan.md` in `preview` mode.
+  - `notes/promotion-plan.json` only for a `READY` preview.
+  - `<canonical-paper-dir>/promotion-manifest.json`, the named canonical paper directory, and a timestamped archive of the previous package in apply mode.
+- `related-work-weaver`
+  - `drafts/related-work.md`
+- `reviewer-response-writer`
+  - `rebuttal.md`
+- `targeted-critic`
+  - In-session findings by default.
+  - Optional user-requested durable report at one of:
+  - `reviews/auto-review.md` for evidence mode;
+  - `<paper-dir>/review-log.md` for paper mode;
+  - a user-named `critique-output.md` for artifact mode. Never create a durable report merely to prove the critique happened.
+
+### Standalone Utility Skills
+- `paper-presentation-builder`
+  - `presentations/<deck-id>/` relative to the selected output root.
+  - `presentations/<deck-id>/deck-brief.md`
+  - `presentations/<deck-id>/storyboard.md`
+  - `presentations/<deck-id>/style-spec.md`
+  - `presentations/<deck-id>/asset-manifest.md`
+  - Optional `presentations/<deck-id>/slide-script.md` when speaker notes or a timed narration are requested.
+  - Optional `presentations/<deck-id>/contact-sheet.png` when a rendered deck or image previews are produced.
+  - Optional `presentations/<deck-id>/qa.md` when a rendered deck is reviewed.
+  - Optional `presentations/<deck-id>/<deck-id>.pptx` when the final requested artifact is a local PowerPoint deck.
+
+## By Artifact
+
+Note: `presentations/<deck-id>/...` paths are relative to the standalone output root selected by `paper-presentation-builder`; they are not a default idea-root contract.
+
+- `<canonical-paper-dir>/promotion-manifest.json` -> `promote-paper-version`
+- `<figure-id>.qa.md` -> `conceptual-figure-builder`
+- `<figure-id>.visual-direction.md` -> `conceptual-figure-builder`
+- `<paper-dir>/` -> `paper-finish-loop`
+- `<paper-dir>/INVARIANTS.md` -> `paper-outline-builder`
+- `<paper-dir>/claim-ref-audit.md` -> `claim-reference-auditor`
+- `<paper-dir>/finish-report.md` -> `paper-finish-loop`
+- `<paper-dir>/review-log.md` -> `targeted-critic`
+- `<paper-dir>/style-audit.md` -> `paper-style-auditor`
+- `<paper-dir>/submission-checklist.md` -> `paper-finish-loop`
+- `<paper-dir>/tex-profile.json` -> `paper-finish-loop`
+- `<topic-root>/ideas/<id>/idea.md` -> `idea-backlog-manager`
+- `<topic-root>/ideas/<id>/literature-matrix.md` -> `literature-matrix-builder`
+- `<topic-root>/ideas/<id>/notes/CURRENT.md` -> `idea-backlog-manager`
+- `<topic-root>/ideas/<id>/notes/project-state.md` -> `idea-backlog-manager`
+- `<topic-root>/ideas/registry.yaml` -> `idea-backlog-manager`
+- `<topic-root>/papers/<paper-id>/claim-evidence-map.md` -> `claim-evidence-mapper`
+- `<topic-root>/papers/<paper-id>/download-report.md` -> `paper-pdf-fetcher`
+- `<topic-root>/papers/<paper-id>/figures/` -> `figure-table-extractor`
+- `<topic-root>/papers/<paper-id>/figures/index.md` -> `figure-table-extractor`
+- `<topic-root>/papers/<paper-id>/manual-fetch-needed.md` -> `paper-pdf-fetcher`
+- `<topic-root>/papers/<paper-id>/meta.yaml` -> `paper-metadata-normalizer`
+- `<topic-root>/papers/<paper-id>/notes.md` -> `paper-summary-writer`
+- `<topic-root>/papers/<paper-id>/paper.md` -> `paper-to-markdown`
+- `<topic-root>/papers/<paper-id>/reading-questions.md` -> `paper-summary-writer`
+- `<topic-root>/papers/<paper-id>/source md文档/` -> `paper-to-markdown`
+- `<topic-root>/papers/<paper-id>/source.pdf` -> `paper-pdf-fetcher`
+- `<topic-root>/papers/<paper-id>/structure.md` -> `paper-summary-writer`
+- `<topic-root>/papers/<paper-id>/summary.md` -> `paper-summary-writer`
+- `<topic-root>/synthesis/idea-backlog.md` -> `idea-backlog-manager`
+- `<topic-root>/synthesis/literature-corpus.jsonl` -> `literature-corpus-maintainer`
+- `<topic-root>/synthesis/literature-matrix.md` -> `literature-matrix-builder`
+- `<topic-root>/synthesis/paper-leads.jsonl` -> `paper-discovery-fetcher`
+- `<topic-root>/synthesis/reading-queue.md` -> `paper-inbox-triage`
+- `<topic-root>/synthesis/research-gaps.md` -> `literature-matrix-builder`
+- `<topic-root>/synthesis/search-report.md` -> `paper-discovery-fetcher`
+- `<topic-root>/synthesis/team-corpus.jsonl` -> `research-team-mapper`
+- `<topic-root>/synthesis/team-radar.md` -> `research-team-mapper`
+- `<topic-root>/synthesis/topic-map.md` -> `literature-matrix-builder`
+- `<topic-root>/synthesis/topic-profile.yaml` -> `paper-discovery-fetcher`
+- `attempt-N/` -> `run-experiment`
+- `critique-output.md` -> `targeted-critic`
+- `document.md` -> `paper-to-markdown`
+- `drafts/abstract.md` -> `abstract-title-polisher`
+- `drafts/contribution-brief.md` -> `paper-story-framer`
+- `drafts/figures/<figure-id>.spec.md` -> `conceptual-figure-builder`
+- `drafts/intro.md` -> `intro-problem-framer`
+- `drafts/method-results.md` -> `method-results-drafter`
+- `drafts/outline.md` -> `paper-outline-builder`
+- `drafts/related-work.md` -> `related-work-weaver`
+- `drafts/story-brief.md` -> `paper-story-framer`
+- `drafts/title-options.md` -> `abstract-title-polisher`
+- `executed.ipynb` -> `run-experiment`
+- `experiments/conceptual-figures/<figure-id>.candidate-board.md` -> `conceptual-figure-builder`
+- `experiments/conceptual-figures/<figure-id>.critique.md` -> `conceptual-figure-builder`
+- `experiments/conceptual-figures/<figure-id>.png` -> `conceptual-figure-builder`
+- `experiments/failures/failure-analysis.md` -> `failure-analysis-writer`
+- `experiments/logs/experiment-log.md` -> `run-experiment`
+- `experiments/plans/baseline-checklist.md` -> `baseline-checklist-builder`
+- `experiments/plans/experiment-plan.md` -> `experiment-spec-writer`
+- `experiments/plans/reproduction-plan.md` -> `reproduction-planner`
+- `experiments/plots/` -> `figure-plot-builder`
+- `experiments/plots/index.md` -> `figure-plot-builder`
+- `experiments/results/summary.md` -> `result-aggregator`
+- `experiments/runbooks/runbook.md` -> `runbook-generator`
+- `experiments/runs/<run-id>/promotion-manifest.json` -> `promote-run-outputs`
+- `experiments/runs/<run-id>/promotion-plan.json` -> `promote-run-outputs`
+- `experiments/runs/<run-id>/promotion.md` -> `promote-run-outputs`
+- `experiments/runs/<run-id>/status.json` -> `run-experiment`
+- `experiments/runs/<run-id>/stdout.log` -> `run-experiment`
+- `experiments/runs/index.md` -> `run-experiment`
+- `experiments/runs/watchdog-report.md` -> `experiment-watchdog`
+- `experiments/runs/watchdog-state.json` -> `experiment-watchdog`
+- `hypothesis.md` -> `hypothesis-framer`
+- `latex-sanity.txt` -> `paper-finish-loop`
+- `launch.md` -> `run-experiment`
+- `notes/promotion-plan.json` -> `promote-paper-version`
+- `notes/promotion-plan.md` -> `promote-paper-version`
+- `pdf-packaging-report.json` -> `paper-finish-loop`
+- `po-workspace/cache/s2_cache.json` -> `po-related-work-backend`
+- `po-workspace/citation_pool.json` -> `po-related-work-backend`
+- `po-workspace/comparison-notes.md` -> `po-related-work-backend`
+- `po-workspace/deduped_candidates.json` -> `po-related-work-backend`
+- `po-workspace/drafts/intro_relwork.tex` -> `po-related-work-backend`
+- `po-workspace/raw_candidates.json` -> `po-related-work-backend`
+- `po-workspace/raw_pool.json` -> `po-related-work-backend`
+- `po-workspace/refs.bib` -> `po-related-work-backend`
+- `po-workspace/s2_verification_report.json` -> `po-related-work-backend`
+- `po-workspace/seeded_candidates.json` -> `po-related-work-backend`
+- `po-workspace/trial-summary.md` -> `po-related-work-backend`
+- `presentations/<deck-id>/` -> `paper-presentation-builder`
+- `presentations/<deck-id>/<deck-id>.pptx` -> `paper-presentation-builder`
+- `presentations/<deck-id>/asset-manifest.md` -> `paper-presentation-builder`
+- `presentations/<deck-id>/contact-sheet.png` -> `paper-presentation-builder`
+- `presentations/<deck-id>/deck-brief.md` -> `paper-presentation-builder`
+- `presentations/<deck-id>/qa.md` -> `paper-presentation-builder`
+- `presentations/<deck-id>/slide-script.md` -> `paper-presentation-builder`
+- `presentations/<deck-id>/storyboard.md` -> `paper-presentation-builder`
+- `presentations/<deck-id>/style-spec.md` -> `paper-presentation-builder`
+- `rebuttal.md` -> `reviewer-response-writer`
+- `refs.bib` -> `citation-library-maintainer`
+- `reviews/auto-review.md` -> `targeted-critic`
+- `stderr.log` -> `run-experiment`

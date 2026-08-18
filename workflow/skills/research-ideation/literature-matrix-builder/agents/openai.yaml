@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Matrix Builder"
+  short_description: "Build one matrix, topic map, or gap view"
+  default_prompt: "Use $literature-matrix-builder in matrix, map, or gaps mode for this paper set."

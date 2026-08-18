@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Inbox Triage"
+  short_description: "Prioritize new papers and reading queue"
+  default_prompt: "Use $paper-inbox-triage to rank my unread papers, remove duplicates, and recommend the single next paper I should read."
