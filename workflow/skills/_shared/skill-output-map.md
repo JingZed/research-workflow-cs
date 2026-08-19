@@ -9,73 +9,72 @@ This file is generated from each skill's `## Produce` section. Use it as the own
 ## By Skill
 
 ### Research Ideation
-- `citation-library-maintainer`
-  - `refs.bib`
-- `claim-evidence-mapper`
-  - `<topic-root>/papers/<paper-id>/claim-evidence-map.md`
+- `paper-discovery-fetcher`
+  - `<topic-root>/synthesis/topic-profile.yaml`
+  - `<topic-root>/synthesis/paper-leads.jsonl`
+  - Optional `<topic-root>/synthesis/search-report.md` when a human-readable search handoff or source audit is actually needed
+- `paper-pdf-fetcher`
+  - `<topic-root>/papers/<paper-id>/source.pdf`
+  - `<topic-root>/papers/<paper-id>/download-report.md`
+  - `<topic-root>/papers/<paper-id>/manual-fetch-needed.md` when automated acquisition fails for a paper that is still worth reading
+- `paper-inbox-triage`
+  - `<topic-root>/synthesis/reading-queue.md`
+- `paper-metadata-normalizer`
+  - `<topic-root>/papers/<paper-id>/meta.yaml`
+- `paper-to-markdown`
+  - `<topic-root>/papers/<paper-id>/paper.md`
+  - `<topic-root>/papers/<paper-id>/source md文档/` — MinerU raw output directory containing `document.md` and extracted image files
 - `figure-table-extractor`
   - `<topic-root>/papers/<paper-id>/figures/`
   - `<topic-root>/papers/<paper-id>/figures/index.md`
-- `idea-backlog-manager`
-  - `<topic-root>/synthesis/idea-backlog.md`
-  - Optional `<topic-root>/ideas/registry.yaml` when the user explicitly promotes or changes the status of an idea
-  - Optional `<topic-root>/ideas/<id>/idea.md` when the user explicitly promotes one backlog item
-  - Optional `<topic-root>/ideas/<id>/notes/CURRENT.md` and `<topic-root>/ideas/<id>/notes/project-state.md` when the user explicitly activates a promoted idea
+- `citation-library-maintainer`
+  - `refs.bib`
+- `paper-summary-writer`
+  - Summary mode: `<topic-root>/papers/<paper-id>/summary.md`.
+  - Structure mode: `<topic-root>/papers/<paper-id>/structure.md`.
+  - Questions mode: `<topic-root>/papers/<paper-id>/reading-questions.md`.
+  - Notes mode: `<topic-root>/papers/<paper-id>/notes.md`. Produce one mode's artifact by default. Do not fan out all four files.
 - `literature-corpus-maintainer`
   - `<topic-root>/synthesis/literature-corpus.jsonl`
+- `claim-evidence-mapper`
+  - `<topic-root>/papers/<paper-id>/claim-evidence-map.md`
 - `literature-matrix-builder`
   - Matrix mode:
   - `<topic-root>/synthesis/literature-matrix.md`, or
   - `<topic-root>/ideas/<id>/literature-matrix.md` for one explicit idea.
   - Map mode: `<topic-root>/synthesis/topic-map.md`.
   - Gaps mode: `<topic-root>/synthesis/research-gaps.md`. Produce one mode's artifact unless the user explicitly asks for several.
-- `paper-discovery-fetcher`
-  - `<topic-root>/synthesis/topic-profile.yaml`
-  - `<topic-root>/synthesis/paper-leads.jsonl`
-  - Optional `<topic-root>/synthesis/search-report.md` when a human-readable search handoff or source audit is actually needed
-- `paper-inbox-triage`
-  - `<topic-root>/synthesis/reading-queue.md`
-- `paper-metadata-normalizer`
-  - `<topic-root>/papers/<paper-id>/meta.yaml`
-- `paper-pdf-fetcher`
-  - `<topic-root>/papers/<paper-id>/source.pdf`
-  - `<topic-root>/papers/<paper-id>/download-report.md`
-  - `<topic-root>/papers/<paper-id>/manual-fetch-needed.md` when automated acquisition fails for a paper that is still worth reading
-- `paper-summary-writer`
-  - Summary mode: `<topic-root>/papers/<paper-id>/summary.md`.
-  - Structure mode: `<topic-root>/papers/<paper-id>/structure.md`.
-  - Questions mode: `<topic-root>/papers/<paper-id>/reading-questions.md`.
-  - Notes mode: `<topic-root>/papers/<paper-id>/notes.md`. Produce one mode's artifact by default. Do not fan out all four files.
-- `paper-to-markdown`
-  - `<topic-root>/papers/<paper-id>/paper.md`
-  - `<topic-root>/papers/<paper-id>/source md文档/` — MinerU raw output directory containing `document.md` and extracted image files
+- `idea-backlog-manager`
+  - `<topic-root>/synthesis/idea-backlog.md`
+  - Optional `<topic-root>/ideas/registry.yaml` when the user explicitly promotes or changes the status of an idea
+  - Optional `<topic-root>/ideas/<id>/idea.md` when the user explicitly promotes one backlog item
+  - Optional `<topic-root>/ideas/<id>/notes/CURRENT.md` and `<topic-root>/ideas/<id>/notes/project-state.md` when the user explicitly activates a promoted idea
 - `research-team-mapper`
   - `<topic-root>/synthesis/team-corpus.jsonl`
   - Optional `<topic-root>/synthesis/team-radar.md` only when the user requests a human-readable view or a durable browsing handoff.
+- `idea-creator`
+  - `<topic-root>/synthesis/idea-candidates.md`
+- `novelty-check`
+  - An in-session report by default.
+  - Optional `<target-dir>/novelty-check.md` when the user requests a durable report.
+- `novelty-sanity-check`
+  - An in-session report by default.
+  - Optional `<target-dir>/novelty-sanity-check.md` when the user requests a durable local screen.
+- `research-lit`
+  - An in-session synthesis by default.
+  - Optional `<topic-root>/synthesis/library-search.md` when the user requests a durable cross-source report.
 
 ### Experiment Execution
+- `hypothesis-framer`
+  - `hypothesis.md`
+- `reproduction-planner`
+  - `experiments/plans/reproduction-plan.md`
 - `baseline-checklist-builder`
   - `experiments/plans/baseline-checklist.md`
 - `experiment-spec-writer`
   - `experiments/plans/experiment-plan.md`
-- `experiment-watchdog`
-  - On first sweep or a material transition: `experiments/runs/watchdog-report.md` and `experiments/runs/watchdog-state.json`
-  - No file rewrite for an unchanged sweep unless an explicit snapshot is requested
-- `failure-analysis-writer`
-  - `experiments/failures/failure-analysis.md`
-- `figure-plot-builder`
-  - `experiments/plots/`
-  - `experiments/plots/index.md`
-- `hypothesis-framer`
-  - `hypothesis.md`
-- `promote-run-outputs`
-  - `experiments/runs/<run-id>/promotion.md` in `preview` mode.
-  - `experiments/runs/<run-id>/promotion-plan.json` only for a `READY` preview.
-  - `experiments/runs/<run-id>/promotion-manifest.json`, approved canonical files, and rollback copies under the plan's archive directory in apply mode.
-- `reproduction-planner`
-  - `experiments/plans/reproduction-plan.md`
-- `result-aggregator`
-  - `experiments/results/summary.md`
+- `runbook-generator`
+  - `experiments/runbooks/runbook.md`
 - `run-experiment`
   - Run mode:
   - `experiments/runs/index.md` for named or multi-run work;
@@ -86,44 +85,43 @@ This file is generated from each skill's `## Produce` section. Use it as the own
   - optional `executed.ipynb` for notebook-first execution;
   - only bounded code, configuration, entrypoint, logging, and focused test changes required by the existing scientific contract.
   - Record mode: optional update to an existing `experiments/logs/experiment-log.md` when the user explicitly asks.
-- `runbook-generator`
-  - `experiments/runbooks/runbook.md`
+- `result-aggregator`
+  - `experiments/results/summary.md`
+- `figure-plot-builder`
+  - `experiments/plots/`
+  - `experiments/plots/index.md`
+- `failure-analysis-writer`
+  - `experiments/failures/failure-analysis.md`
+- `experiment-watchdog`
+  - On first sweep or a material transition: `experiments/runs/watchdog-report.md` and `experiments/runs/watchdog-state.json`
+  - No file rewrite for an unchanged sweep unless an explicit snapshot is requested
+- `promote-run-outputs`
+  - `experiments/runs/<run-id>/promotion.md` in `preview` mode.
+  - `experiments/runs/<run-id>/promotion-plan.json` only for a `READY` preview.
+  - `experiments/runs/<run-id>/promotion-manifest.json`, approved canonical files, and rollback copies under the plan's archive directory in apply mode.
+- `results-sufficiency-review`
+  - An in-session verdict by default.
+  - Optional `experiments/results/sufficiency-review.md` when the user requests a durable assessment.
 
 ### Paper Writing
-- `abstract-title-polisher`
-  - `drafts/abstract.md`
-  - Optional `drafts/title-options.md` when the title is still unstable or the user wants multiple candidates
-- `claim-reference-auditor`
-  - `<paper-dir>/claim-ref-audit.md`
-- `conceptual-figure-builder`
-  - Spec mode: `drafts/figures/<figure-id>.spec.md`.
-  - Explore mode, only when requested:
-  - `experiments/conceptual-figures/<figure-id>.candidate-board.md`;
-  - optional `<figure-id>.visual-direction.md` and up to two candidate images.
-  - Build mode:
-  - `experiments/conceptual-figures/<figure-id>.png`;
-  - optional SVG, overlay, scaffold, prompt, or path manifest only when the production method needs it;
-  - optional `<figure-id>.qa.md` or existing figure index update when the project already keeps that record or the user requests it.
-  - Critique mode: in-session findings by default; optional `experiments/conceptual-figures/<figure-id>.critique.md` when requested.
-- `intro-problem-framer`
-  - `drafts/intro.md`
-- `method-results-drafter`
-  - `drafts/method-results.md`
-- `paper-finish-loop`
-  - Build or finish mode:
-  - `<paper-dir>/` updates within the requested scope;
-  - `<paper-dir>/tex-profile.json` when environment probing is needed;
-  - `<paper-dir>/finish-report.md`;
-  - optional `latex-sanity.txt` or `pdf-packaging-report.json` only when the corresponding check ran.
-  - Submission-check mode: `<paper-dir>/submission-checklist.md`.
-- `paper-outline-builder`
-  - `drafts/outline.md`
-  - Optional `<paper-dir>/INVARIANTS.md` only when an existing writable paper candidate is resolved unambiguously and either the user requested an invariant update or the approved paper-global claim structure materially changed. This is a paper-global constraint registry, not a draft section.
 - `paper-story-framer`
   - Story mode: `drafts/story-brief.md`.
   - Contribution mode: `drafts/contribution-brief.md`.
+- `targeted-critic`
+  - In-session findings by default.
+  - Optional user-requested durable report at one of:
+  - `reviews/auto-review.md` for evidence mode;
+  - `<paper-dir>/review-log.md` for paper mode;
+  - a user-named `critique-output.md` for artifact mode. Never create a durable report merely to prove the critique happened.
 - `paper-style-auditor`
   - `<paper-dir>/style-audit.md`
+- `paper-outline-builder`
+  - `drafts/outline.md`
+  - Optional `<paper-dir>/INVARIANTS.md` only when an existing writable paper candidate is resolved unambiguously and either the user requested an invariant update or the approved paper-global claim structure materially changed. This is a paper-global constraint registry, not a draft section.
+- `intro-problem-framer`
+  - `drafts/intro.md`
+- `related-work-weaver`
+  - `drafts/related-work.md`
 - `po-related-work-backend`
   - `po-workspace/seeded_candidates.json`
   - `po-workspace/raw_candidates.json`
@@ -136,20 +134,40 @@ This file is generated from each skill's `## Produce` section. Use it as the own
   - `po-workspace/drafts/intro_relwork.tex`
   - Optional `po-workspace/comparison-notes.md`
   - Optional `po-workspace/trial-summary.md`
+- `method-results-drafter`
+  - `drafts/method-results.md`
+- `paper-finish-loop`
+  - Build or finish mode:
+  - `<paper-dir>/` updates within the requested scope;
+  - `<paper-dir>/tex-profile.json` when environment probing is needed;
+  - `<paper-dir>/finish-report.md`;
+  - optional `latex-sanity.txt` or `pdf-packaging-report.json` only when the corresponding check ran.
+  - Submission-check mode: `<paper-dir>/submission-checklist.md`.
+  - Status mode: an in-session diagnosis only; do not create a routing or status artifact.
+- `abstract-title-polisher`
+  - `drafts/abstract.md`
+  - Optional `drafts/title-options.md` when the title is still unstable or the user wants multiple candidates
+- `claim-reference-auditor`
+  - `<paper-dir>/claim-ref-audit.md`
 - `promote-paper-version`
   - `notes/promotion-plan.md` in `preview` mode.
   - `notes/promotion-plan.json` only for a `READY` preview.
   - `<canonical-paper-dir>/promotion-manifest.json`, the named canonical paper directory, and a timestamped archive of the previous package in apply mode.
-- `related-work-weaver`
-  - `drafts/related-work.md`
 - `reviewer-response-writer`
   - `rebuttal.md`
-- `targeted-critic`
-  - In-session findings by default.
-  - Optional user-requested durable report at one of:
-  - `reviews/auto-review.md` for evidence mode;
-  - `<paper-dir>/review-log.md` for paper mode;
-  - a user-named `critique-output.md` for artifact mode. Never create a durable report merely to prove the critique happened.
+- `conceptual-figure-builder`
+  - Spec mode: `drafts/figures/<figure-id>.spec.md`.
+  - Explore mode, only when requested:
+  - `experiments/conceptual-figures/<figure-id>.candidate-board.md`;
+  - optional `<figure-id>.visual-direction.md` and up to two candidate images.
+  - Build mode:
+  - `experiments/conceptual-figures/<figure-id>.png`;
+  - optional SVG, overlay, scaffold, prompt, or path manifest only when the production method needs it;
+  - optional `<figure-id>.qa.md` or existing figure index update when the project already keeps that record or the user requests it.
+  - Critique mode: in-session findings by default; optional `experiments/conceptual-figures/<figure-id>.critique.md` when requested.
+- `research-review`
+  - An in-session review by default.
+  - Optional `<target-dir>/deep-review.md` when the user requests a durable, self-contained review.
 
 ### Standalone Utility Skills
 - `paper-presentation-builder`
@@ -178,6 +196,9 @@ Note: `presentations/<deck-id>/...` paths are relative to the standalone output 
 - `<paper-dir>/style-audit.md` -> `paper-style-auditor`
 - `<paper-dir>/submission-checklist.md` -> `paper-finish-loop`
 - `<paper-dir>/tex-profile.json` -> `paper-finish-loop`
+- `<target-dir>/deep-review.md` -> `research-review`
+- `<target-dir>/novelty-check.md` -> `novelty-check`
+- `<target-dir>/novelty-sanity-check.md` -> `novelty-sanity-check`
 - `<topic-root>/ideas/<id>/idea.md` -> `idea-backlog-manager`
 - `<topic-root>/ideas/<id>/literature-matrix.md` -> `literature-matrix-builder`
 - `<topic-root>/ideas/<id>/notes/CURRENT.md` -> `idea-backlog-manager`
@@ -197,6 +218,8 @@ Note: `presentations/<deck-id>/...` paths are relative to the standalone output 
 - `<topic-root>/papers/<paper-id>/structure.md` -> `paper-summary-writer`
 - `<topic-root>/papers/<paper-id>/summary.md` -> `paper-summary-writer`
 - `<topic-root>/synthesis/idea-backlog.md` -> `idea-backlog-manager`
+- `<topic-root>/synthesis/idea-candidates.md` -> `idea-creator`
+- `<topic-root>/synthesis/library-search.md` -> `research-lit`
 - `<topic-root>/synthesis/literature-corpus.jsonl` -> `literature-corpus-maintainer`
 - `<topic-root>/synthesis/literature-matrix.md` -> `literature-matrix-builder`
 - `<topic-root>/synthesis/paper-leads.jsonl` -> `paper-discovery-fetcher`
@@ -230,6 +253,7 @@ Note: `presentations/<deck-id>/...` paths are relative to the standalone output 
 - `experiments/plans/reproduction-plan.md` -> `reproduction-planner`
 - `experiments/plots/` -> `figure-plot-builder`
 - `experiments/plots/index.md` -> `figure-plot-builder`
+- `experiments/results/sufficiency-review.md` -> `results-sufficiency-review`
 - `experiments/results/summary.md` -> `result-aggregator`
 - `experiments/runbooks/runbook.md` -> `runbook-generator`
 - `experiments/runs/<run-id>/promotion-manifest.json` -> `promote-run-outputs`

@@ -12,15 +12,10 @@ SKILLS_DIR = WORKFLOW_ROOT / "skills"
 SHARED_DIR = SKILLS_DIR / "_shared"
 CATALOG_PATH = SHARED_DIR / "skill-catalog.json"
 OUTPUT_MAP_PATH = SHARED_DIR / "skill-output-map.md"
-MAX_RESEARCH_SKILLS = 40
-MAX_TOTAL_ARTIFACT_REFS = 128
 MAX_SKILL_BYTES = 16 * 1024
 MAX_SKILL_LINES = 240
-MAX_TOTAL_SKILL_BYTES = 240 * 1024
 MAX_DESCRIPTION_CHARS = 480
-MAX_REFERENCE_FILES = 30
 MAX_REFERENCE_FILE_BYTES = 16 * 1024
-MAX_TOTAL_REFERENCE_BYTES = 160 * 1024
 MAX_SHORT_DESCRIPTION_CHARS = 64
 FORBIDDEN_SKILL_SUFFIXES = ("-entry", "-router", "-gate")
 FORBIDDEN_SKILL_NAMES = frozenset(
@@ -110,6 +105,15 @@ VALID_CATEGORIES_BY_PART = {
         "Writing and Submission",
     },
     "standalone": {"Standalone Utility"},
+}
+
+DEFAULT_CATEGORY_BY_SKILL = {
+    "idea-creator": "Flow Support",
+    "novelty-check": "Multi-Paper Synthesis",
+    "novelty-sanity-check": "Multi-Paper Synthesis",
+    "research-lit": "Literature Discovery",
+    "research-review": "Writing and Submission",
+    "results-sufficiency-review": "Execution and Results",
 }
 
 SHARED_ARTIFACT_DESCRIPTIONS = {
@@ -269,6 +273,9 @@ def infer_category(name: str, part: str, existing: dict[str, object] | None) -> 
         existing_category = existing["category"]
         if existing_category in VALID_CATEGORIES_BY_PART[part]:
             return existing_category
+    hinted_category = DEFAULT_CATEGORY_BY_SKILL.get(name)
+    if hinted_category in VALID_CATEGORIES_BY_PART[part]:
+        return hinted_category
     if part == "research-ideation":
         return "Flow Support"
     if part == "experiment-execution":
@@ -345,42 +352,6 @@ def discover_skills() -> list[dict[str, object]]:
 
 def skill_architecture_errors(skills: list[dict[str, object]]) -> list[str]:
     errors: list[str] = []
-    if len(skills) > MAX_RESEARCH_SKILLS:
-        errors.append(
-            f"Research Skill count is {len(skills)}, above the fixed budget "
-            f"of {MAX_RESEARCH_SKILLS}"
-        )
-
-    total_artifact_refs = sum(len(skill.get("produce_refs", [])) for skill in skills)
-    if total_artifact_refs > MAX_TOTAL_ARTIFACT_REFS:
-        errors.append(
-            f"Research Skill artifact outputs total {total_artifact_refs}, above "
-            f"the fixed budget of {MAX_TOTAL_ARTIFACT_REFS}"
-        )
-    total_skill_bytes = sum(int(skill.get("_skill_bytes", 0)) for skill in skills)
-    if total_skill_bytes > MAX_TOTAL_SKILL_BYTES:
-        errors.append(
-            f"Research SKILL.md text totals {total_skill_bytes} bytes, above the "
-            f"fixed budget of {MAX_TOTAL_SKILL_BYTES}"
-        )
-    reference_files = [
-        Path(path)
-        for skill in skills
-        for path in skill.get("_reference_files", [])
-        if isinstance(path, str)
-    ]
-    if len(reference_files) > MAX_REFERENCE_FILES:
-        errors.append(
-            f"Research Skill references total {len(reference_files)} files, above "
-            f"the fixed budget of {MAX_REFERENCE_FILES}"
-        )
-    total_reference_bytes = sum(path.stat().st_size for path in reference_files)
-    if total_reference_bytes > MAX_TOTAL_REFERENCE_BYTES:
-        errors.append(
-            f"Research Skill references total {total_reference_bytes} bytes, above "
-            f"the fixed budget of {MAX_TOTAL_REFERENCE_BYTES}"
-        )
-
     for skill in skills:
         name = str(skill["name"])
         for router_field in ("next_skills", "routes_to"):

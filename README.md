@@ -1,7 +1,7 @@
 # Research Workflow Skills
 
 This package contains a materialized, portable snapshot of a lightweight
-research workflow: 39 leaf Skills, shared artifact contracts, deterministic
+research workflow: directly triggerable leaf Skills, shared artifact contracts, deterministic
 helpers, catalog generation, architecture checks, and unit tests.
 
 Read [WORKFLOW.md](WORKFLOW.md) for the complete stage-by-stage route,
@@ -13,7 +13,7 @@ third-party material and its preserved license are documented in
 
 ## What Is Included
 
-- `workflow/skills/`: 39 research ideation, experiment execution, paper
+- `workflow/skills/`: research ideation, experiment execution, paper
   writing, and standalone Skills.
 - `workflow/skills/_shared/`: artifact, authority, language, engineering, and
   template contracts used by the Skills.
@@ -86,14 +86,16 @@ not require or contain them.
 
 ## Architecture Guardrails
 
-- At most 40 Research Skills.
+- No fixed Research Skill-count cap; useful capabilities are retained when
+  they have a distinct trigger, output, or integration.
 - Each Skill is a directly triggerable leaf capability with a distinct output
   or tool integration.
 - Router, entry, standalone gate, handoff, generic state-maintenance, and
   retired meta-workflow Skills are rejected.
 - `## Produce` paths define artifact ownership; duplicate owners are rejected
   except for the two explicitly shared resume artifacts.
-- Skill and reference files have individual and aggregate size budgets.
+- Skill, description, and reference files have individual maintainability
+  limits; catalog-wide counts and aggregate bytes are not capped.
 - Explicit-only trigger wording and
   `policy.allow_implicit_invocation: false` must agree in both directions.
 - The release tree must contain no symlinks, personal absolute paths,
@@ -101,6 +103,10 @@ not require or contain them.
 
 ## Optional Integrations
 
+- `research-lit` can use a connected reference manager such as Zotero and a
+  connected or authorized local note store. These integrations are optional;
+  the report states which sources were unavailable instead of claiming they
+  were searched.
 - Semantic Scholar helpers require `SEMANTIC_SCHOLAR_API_KEY`; keep it in the
   environment or an explicitly untracked local token file.
 - MinerU conversion requires `MINERU_API_TOKEN` when the configured MinerU
@@ -109,6 +115,9 @@ not require or contain them.
 - PaperOrchestra is an optional backend and is not bundled. The corresponding
   Skill must remain dormant when no separate installation and local policy are
   available.
+- `research-review` is explicit-only and needs an authorized independent model,
+  agent, or reviewer service. If none is available, it stops rather than
+  presenting self-review as an external review.
 - `arxiv_fetch.py` retains its upstream MIT attribution. See
   `THIRD_PARTY_NOTICES.md` and
   `LICENSES/Auto-claude-code-research-in-sleep-MIT.txt`.

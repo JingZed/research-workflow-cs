@@ -1,4 +1,4 @@
 interface:
   display_name: "Paper Finish Loop"
-  short_description: "Build, finish, or check one paper package"
-  default_prompt: "Use $paper-finish-loop in build, finish, or submission-check mode for this candidate."
+  short_description: "Inspect, build, finish, or check one paper"
+  default_prompt: "Use $paper-finish-loop in status, build, finish, or submission-check mode for this candidate."
