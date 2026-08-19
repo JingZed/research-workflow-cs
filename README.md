@@ -4,6 +4,9 @@ This package contains a materialized, portable snapshot of a lightweight
 research workflow: 39 leaf Skills, shared artifact contracts, deterministic
 helpers, catalog generation, architecture checks, and unit tests.
 
+Read [WORKFLOW.md](WORKFLOW.md) for the complete stage-by-stage route,
+including inputs, outputs, resume points, and verification commands.
+
 The project is released under the MIT License. See `LICENSE`. Included
 third-party material and its preserved license are documented in
 `THIRD_PARTY_NOTICES.md` and `LICENSES/`.
@@ -22,6 +25,8 @@ third-party material and its preserved license are documented in
   `notes/CURRENT.md` and `notes/project-state.md` contracts for one idea.
 - `workflow/scripts/check_public_release.py`: checks portability, secret
   hygiene, materialized layout, generated metadata, and Python syntax.
+- `WORKFLOW.md`: the complete domain-neutral workflow guide from workspace
+  initialization through experiments, writing, finishing, and delivery.
 - Unit tests colocated under `workflow/scripts/test_*.py`.
 
 Private topics, experiment outputs, credentials, CCB state, infrastructure

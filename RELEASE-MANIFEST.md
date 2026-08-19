@@ -1,6 +1,6 @@
 # Release Manifest
 
-- Built: 2026-08-18
+- Built: 2026-08-19
 - Materialized Skills: 39
 - Skill budget: 39/40
 - Catalog paths: checkout-relative
@@ -14,6 +14,10 @@
 - `experiment-execution`: 11
 - `paper-writing`: 14
 - `standalone`: 1
+
+## Included Guides
+
+- `WORKFLOW.md`
 
 ## Included Workflow Scripts
 

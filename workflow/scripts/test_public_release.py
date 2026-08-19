@@ -9,6 +9,24 @@ import check_public_release
 
 
 class PublicReleaseTest(unittest.TestCase):
+    def test_end_to_end_workflow_guide_is_present(self) -> None:
+        guide = check_public_release.ROOT / "WORKFLOW.md"
+        self.assertTrue(guide.is_file())
+        text = guide.read_text(encoding="utf-8")
+        for heading in (
+            "## 1. Prepare the root and topic",
+            "## 2. Establish scope and collect literature",
+            "## 3. Turn a candidate into a research direction",
+            "## 4. Run, monitor, and interpret experiments",
+            "## 5. Build the paper story and artifacts",
+            "## 6. Finish, promote, and deliver",
+            "## 7. Resume and verify",
+        ):
+            with self.subTest(heading=heading):
+                self.assertIn(heading, text)
+        self.assertIn("init_research_workspace.py", text)
+        self.assertIn("validate_research_workflow.py", text)
+
     def test_static_release_contract_passes(self) -> None:
         self.assertEqual(
             check_public_release.collect_errors(include_commands=False),
