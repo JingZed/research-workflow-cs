@@ -322,19 +322,20 @@ policy:
         self.assertTrue(any("Handoff sections are retired" in error for error in errors))
         self.assertTrue(any("retired routing reference" in error for error in errors))
 
-    def test_architecture_enforces_skill_budget(self):
+    def test_architecture_does_not_impose_catalog_wide_count_or_size_caps(self):
         module = load_module()
         skills = [
             {
                 "name": f"leaf-{index}",
                 "part": "research-ideation",
                 "produce_refs": [f"artifacts/{index}.md"],
+                "_skill_bytes": 2048,
             }
-            for index in range(module.MAX_RESEARCH_SKILLS + 1)
+            for index in range(160)
         ]
         errors = module.skill_architecture_errors(skills)
 
-        self.assertTrue(any("above the fixed budget" in error for error in errors))
+        self.assertEqual(errors, [])
 
     def test_resume_artifact_map_uses_direct_owner_contract(self):
         module = load_module()

@@ -57,6 +57,9 @@ or idea directory as a shortcut.
 
 Use the smallest relevant subset of the literature Skills:
 
+- research-lit provides one optional cross-source view across the Research
+  corpus, connected reference managers, connected or local note stores, local
+  papers, and current scholarly web sources.
 - paper-discovery-fetcher collects candidate papers and can create a topic
   profile and leads file.
 - paper-inbox-triage prioritizes the reading queue.
@@ -84,9 +87,16 @@ answers the current question and verify it before moving on.
 
 ## 3. Turn a candidate into a research direction
 
-Use idea-backlog-manager to rank candidates, promote one idea, or activate work
-that is actually starting. Promotion and activation are explicit actions; they
-do not happen merely because a backlog entry exists.
+Use idea-creator when the task begins with a direction rather than an existing
+candidate. Its generate mode produces and filters 8–12 ideas, discovery mode
+adds a bounded landscape and overlap screen, and rerank mode incorporates named
+pilot evidence. Use novelty-sanity-check for a fast local-only overlap screen
+and novelty-check for a current multi-source closest-work investigation.
+
+Use idea-backlog-manager to capture or rank selected candidates, promote one
+idea, or activate work that is actually starting. Promotion and activation are
+explicit actions; they do not happen merely because a candidate report or
+backlog entry exists.
 
 For an active idea, use as needed:
 
@@ -117,6 +127,8 @@ Use the other execution Skills only when their evidence is present:
 
 - experiment-watchdog reports material run-state transitions;
 - result-aggregator summarizes raw runs;
+- results-sufficiency-review gives a claims-driven SUFFICIENT, NEEDS MORE, or
+  BLOCK assessment before writing, without acting as a promotion gate;
 - figure-plot-builder builds paper-ready plots;
 - failure-analysis-writer analyzes material failures;
 - promote-run-outputs previews or applies an exact canonical replacement.
@@ -139,7 +151,9 @@ the artifact you need:
    or critique.
 6. claim-reference-auditor and paper-style-auditor for bounded audits.
 7. targeted-critic for one requested evidence, artifact, or paper critique.
-8. reviewer-response-writer for a point-by-point response.
+8. research-review only when explicitly requested for a multi-round independent
+   external critique; it is not the default review path.
+9. reviewer-response-writer for a point-by-point response.
 
 These Skills write to drafts/, the named paper directory, or the explicit
 review location they own. They do not silently promote a candidate to a
@@ -147,9 +161,10 @@ canonical manuscript.
 
 ## 6. Finish, promote, and deliver
 
-Use paper-finish-loop to build or check one paper package. Its submission-check
-mode produces a submission checklist without implying that submission has
-occurred.
+Use paper-finish-loop status mode for a read-only diagnosis of the current
+writing bottleneck, or use it to build or check one paper package. Its
+submission-check mode produces a submission checklist without implying that
+submission has occurred.
 
 Use promote-paper-version only when you explicitly want to preview or apply an
 exact paper replacement. Keep the rollback archive that the Skill creates.
@@ -193,9 +208,9 @@ canonical replacement, external sending, or deletion.
 ## Optional integrations and boundaries
 
 Semantic Scholar and MinerU may require locally supplied credentials. The
-package includes examples and helpers, never real keys. PaperOrchestra and
+package includes examples and helpers, never real keys. Connected reference
+managers or note stores, PaperOrchestra, independent reviewer services, and
 compute infrastructure are optional external dependencies and are not bundled.
-If an optional dependency is unavailable, keep the affected branch blocked and
-continue with a supported alternative only when the scientific contract still
-holds.
-
+If an optional dependency is unavailable, report the lost coverage explicitly;
+keep the affected branch blocked or continue with a supported alternative only
+when the scientific contract still holds.

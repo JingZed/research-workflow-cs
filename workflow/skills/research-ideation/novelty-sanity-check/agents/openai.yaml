@@ -1,0 +1,4 @@
+interface:
+  display_name: "Novelty Sanity Check"
+  short_description: "Screen an idea against the local corpus"
+  default_prompt: "Use $novelty-sanity-check to compare this idea with the current local literature corpus."

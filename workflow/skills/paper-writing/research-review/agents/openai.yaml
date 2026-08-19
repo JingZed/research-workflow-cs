@@ -1,0 +1,6 @@
+interface:
+  display_name: "Deep Research Review"
+  short_description: "Run an explicit multi-round external review"
+  default_prompt: "Use $research-review to run a deep external review of this research artifact."
+policy:
+  allow_implicit_invocation: false

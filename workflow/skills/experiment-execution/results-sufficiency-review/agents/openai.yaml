@@ -1,0 +1,4 @@
+interface:
+  display_name: "Results Sufficiency Review"
+  short_description: "Judge whether evidence is ready for writing"
+  default_prompt: "Use $results-sufficiency-review to judge whether these results support the planned claims."

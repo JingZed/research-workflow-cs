@@ -20,7 +20,6 @@ SKILLS_DIR = ROOT / "workflow" / "skills"
 CATALOG_PATH = SKILLS_DIR / "_shared" / "skill-catalog.json"
 OUTPUT_MAP_PATH = SKILLS_DIR / "_shared" / "skill-output-map.md"
 AGENTS_PATH = ROOT / "AGENTS.md"
-EXPECTED_SKILL_COUNT = 39
 REQUIRED_LICENSE_FILES = (
     ROOT / "LICENSE",
     ROOT / "THIRD_PARTY_NOTICES.md",
@@ -202,11 +201,10 @@ def catalog_errors() -> list[str]:
         catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         return [f"cannot read generated catalog: {exc}"]
-    if len(catalog) != EXPECTED_SKILL_COUNT:
-        errors.append(
-            f"catalog has {len(catalog)} Skills; release expects "
-            f"{EXPECTED_SKILL_COUNT}"
-        )
+    if not isinstance(catalog, list):
+        return ["generated catalog must contain a list"]
+    if not catalog:
+        errors.append("generated catalog contains no Skills")
     names: set[str] = set()
     for entry in catalog:
         name = str(entry.get("name", ""))
@@ -232,11 +230,8 @@ def catalog_errors() -> list[str]:
 
     skill_files = sorted(SKILLS_DIR.glob("*/*/SKILL.md"))
     live_names = {path.parent.name for path in skill_files}
-    if len(skill_files) != EXPECTED_SKILL_COUNT:
-        errors.append(
-            f"materialized tree has {len(skill_files)} Skills; release expects "
-            f"{EXPECTED_SKILL_COUNT}"
-        )
+    if not skill_files:
+        errors.append("materialized tree contains no Skills")
     if names != live_names:
         missing = sorted(live_names - names)
         extra = sorted(names - live_names)
@@ -388,10 +383,8 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(
-        f"OK  public release checks passed for {EXPECTED_SKILL_COUNT} "
-        "materialized Skills"
-    )
+    skill_count = len(list(SKILLS_DIR.glob("*/*/SKILL.md")))
+    print(f"OK  public release checks passed for {skill_count} materialized Skills")
     if args.run_tests:
         return run_tests()
     return 0

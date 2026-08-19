@@ -1,0 +1,4 @@
+interface:
+  display_name: "Novelty Check"
+  short_description: "Check global novelty against recent literature"
+  default_prompt: "Use $novelty-check to verify this idea against recent and closely related literature."

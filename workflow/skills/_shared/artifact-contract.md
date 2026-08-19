@@ -76,6 +76,8 @@ encode subtopics as nested paper directories.
   bridge papers, and sparse areas.
 - `<topic-root>/synthesis/research-gaps.md` is the topic-wide shortlist of
   evidence-backed candidate gaps.
+- `<topic-root>/synthesis/idea-candidates.md` is a generated, ranked candidate
+  report; `idea-backlog.md` remains the canonical managed pool.
 - `<topic-root>/synthesis/idea-backlog.md` is the ranked topic-wide pool of
   candidate ideas.
 - `<topic-root>/synthesis/topic-profile.yaml`,
@@ -87,6 +89,8 @@ encode subtopics as nested paper directories.
   `<topic-root>/synthesis/team-radar.md` is its derived human-readable view.
 - Optional discovery audit output belongs at
   `<topic-root>/synthesis/search-report.md`.
+- Optional cross-source library synthesis belongs at
+  `<topic-root>/synthesis/library-search.md`.
 - `<topic-root>/ideas/<id>/literature-matrix.md` is an optional derived view
   for one idea.
 - `<topic-root>/ideas/registry.yaml` indexes promoted ideas. Each normal

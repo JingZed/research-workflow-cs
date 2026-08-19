@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Literature Search"
+  short_description: "Search local, library, note, and web sources"
+  default_prompt: "Use $research-lit to search my available literature sources and synthesize the findings."

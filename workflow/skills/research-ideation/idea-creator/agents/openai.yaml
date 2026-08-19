@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Idea Creator"
+  short_description: "Generate, test, and rank research ideas"
+  default_prompt: "Use $idea-creator to generate and rank research ideas for this direction."

@@ -1,8 +1,9 @@
 # Release Manifest
 
 - Built: 2026-08-19
-- Materialized Skills: 39
-- Skill budget: 39/40
+- Materialized Skills: 45
+- Skill-count cap: none
+- Maintainability checks: enabled for Skill and reference size, artifact ownership, metadata, and architecture
 - Catalog paths: checkout-relative
 - Runtime symlinks: none
 - License: MIT
@@ -10,9 +11,9 @@
 
 ## Included Skill Parts
 
-- `research-ideation`: 13
-- `experiment-execution`: 11
-- `paper-writing`: 14
+- `research-ideation`: 17
+- `experiment-execution`: 12
+- `paper-writing`: 15
 - `standalone`: 1
 
 ## Included Guides
