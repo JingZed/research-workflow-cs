@@ -103,15 +103,22 @@ not require or contain them.
 
 ## Optional Integrations
 
+For the intended end-to-end literature workflow, we recommend configuring both
+Semantic Scholar and MinerU. They remain optional so the rest of the workflow
+can run without them, but missing Semantic Scholar reduces metadata discovery
+and missing MinerU disables the structured PDF-to-Markdown route.
+
 - `research-lit` can use a connected reference manager such as Zotero and a
   connected or authorized local note store. These integrations are optional;
   the report states which sources were unavailable instead of claiming they
   were searched.
-- Semantic Scholar helpers require `SEMANTIC_SCHOLAR_API_KEY`; keep it in the
-  environment or an explicitly untracked local token file.
-- MinerU conversion requires `MINERU_API_TOKEN` when the configured MinerU
-  route asks for authentication. Use the token setup below; do not put a real
-  token in this repository.
+- **Semantic Scholar (recommended):** its helpers require
+  `SEMANTIC_SCHOLAR_API_KEY`; keep it in the environment or an explicitly
+  untracked local token file.
+- **MinerU (recommended):** conversion requires `MINERU_API_TOKEN` when the
+  configured MinerU route asks for authentication. A token supplies credentials
+  but does not install or select a MinerU backend. Use the token setup below;
+  do not put a real token in this repository.
 - PaperOrchestra is an optional backend and is not bundled. The corresponding
   Skill must remain dormant when no separate installation and local policy are
   available.
@@ -133,7 +140,8 @@ chmod 600 workflow/api_tokens.env
 ```
 
 Edit `workflow/api_tokens.env` and replace the placeholders with one
-`KEY=value` entry per line. The supported entries are:
+`KEY=value` entry per line. Both entries are recommended for the end-to-end
+literature workflow; configure only services you are authorized to use:
 
 - `SEMANTIC_SCHOLAR_API_KEY` — used by the Semantic Scholar metadata helper.
 - `MINERU_API_TOKEN` — used by the MinerU conversion route when authentication
